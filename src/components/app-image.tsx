@@ -8,17 +8,19 @@ import { cn } from '@/lib/utils';
 
 import { RetroGrid } from './ui/retro-grid';
 
-interface SafeImageProps extends Omit<ImageProps, 'src'> {
+interface Props extends Omit<ImageProps, 'src'> {
   src: string | null | undefined;
+  imageClassName?: string;
 }
 
 export function AppImage({
   src,
   alt,
   className,
+  imageClassName,
   fill,
   ...props
-}: SafeImageProps) {
+}: Props) {
   const [isError, setIsError] = useState(false);
   const showFallback = !src || isError;
 
@@ -54,6 +56,7 @@ export function AppImage({
           className={cn(
             'object-contain duration-500 ease-in-out',
             'group-hover:scale-105',
+            imageClassName,
           )}
           onError={() => setIsError(true)}
         />

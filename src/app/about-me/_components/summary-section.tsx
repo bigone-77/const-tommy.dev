@@ -22,7 +22,8 @@ export function SummarySection() {
                 alt='신태일 프로필'
                 fill
                 priority
-                className='object-cover transition-transform duration-700 group-hover:scale-105'
+                className='transition-transform duration-700 group-hover:scale-105'
+                imageClassName='object-cover'
               />
             </div>
           </div>
