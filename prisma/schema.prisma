@@ -68,19 +68,32 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
+model Series {
+  id          String   @id @default(dbgenerated("gen_random_uuid()"))
+  title       String   @unique
+  description String?  @db.VarChar(200)
+  thumbnail   String?
+  posts       Post[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 model Post {
-  id        String    @id @default(dbgenerated("gen_random_uuid()"))
-  title     String
-  content   String
-  thumbnail String?
-  tags      String[]
-  published Boolean   @default(false)
-  viewCount Int       @default(0)
+  id          String    @id @default(dbgenerated("gen_random_uuid()"))
+  title       String
+  content     String
+  thumbnail   String?
+  tags        String[]
+  published   Boolean   @default(false)
+  viewCount   Int       @default(0)
   readingTime Int       @default(0)
-  viewLogs  ViewLog[]
-  author    User      @relation(fields: [authorId], references: [id])
-  authorId  String
-  createdAt DateTime  @default(now())
+  viewLogs    ViewLog[]
+  author      User      @relation(fields: [authorId], references: [id])
+  authorId    String
+  seriesId    String?
+  series      Series?   @relation(fields: [seriesId], references: [id], onDelete: SetNull)
+  seriesOrder Int? 
+  createdAt   DateTime  @default(now())
 }
 
 model Til {
@@ -107,9 +120,9 @@ model ViewLog {
 }
 
 enum ProjectStatus {
-  DEVELOPING  // 개발중
-  LIVE        // 운영중
-  ARCHIVED    // 보관중 (운영 종료 혹은 링크 만료)
+  DEVELOPING
+  LIVE
+  ARCHIVED
 }
 
 model Project {

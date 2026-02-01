@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { AppLayout } from '@/components/app-layout';
 import { prisma } from '@/lib/prisma';
 
-import { PostEditorContainer } from '../../../../components/post/post-editor-container';
+import { PostEditorContainer } from '../../../../../components/post/post-editor-container';
 import { updatePostAction } from './page.actions';
 
 export default async function Page({

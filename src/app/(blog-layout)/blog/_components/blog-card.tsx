@@ -3,10 +3,9 @@ import Link from 'next/link';
 import { Post } from '@prisma/client';
 import { Clock, Eye } from 'lucide-react';
 
+import { AppImage } from '@/components/app-image';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-import { AppImage } from './app-image';
 
 interface Props extends Pick<
   Post,
@@ -17,7 +16,7 @@ interface Props extends Pick<
   excerpt?: string;
 }
 
-export function PostCard({
+export function BlogCard({
   url,
   title,
   date,

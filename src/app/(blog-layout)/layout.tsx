@@ -1,5 +1,3 @@
-import { Suspense } from 'react';
-
 import Link from 'next/link';
 
 import { BookOpen, PlusIcon } from 'lucide-react';
@@ -10,23 +8,15 @@ import { FlickeringGrid } from '@/components/ui/flickering-grid';
 import { H1Typography, LeadTypography } from '@/components/ui/typography';
 import { auth } from '@/lib/auth';
 
-import { BlogContent } from './_components/blog-content';
-import {
-  PostGridSkeleton,
-  TagFilterSkeleton,
-} from './_components/blog-skeletons';
+import { BlogTab } from './_components/blog-tab';
 
-export default async function Page({
-  searchParams,
+export default async function BlogLayout({
+  children,
 }: {
-  searchParams: Promise<{ tag?: string }>;
+  children: React.ReactNode;
 }) {
   const session = await auth();
   const isAdmin = session?.user?.isAdmin;
-
-  const resolvedParams = await searchParams;
-  const selectedTag = resolvedParams.tag || 'All';
-
   return (
     <AppLayout>
       <div className='absolute top-0 left-0 z-0 h-50 w-full [mask-image:linear-gradient(to_top,transparent_25%,black_95%)]'>
@@ -40,7 +30,7 @@ export default async function Page({
         />
       </div>
 
-      <div className='relative z-10 space-y-4 border-b pb-12'>
+      <div className='relative z-10 space-y-4 pb-12'>
         <div className='space-y-4'>
           <div className='flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between md:gap-y-0'>
             <div className='flex items-center gap-x-2'>
@@ -73,17 +63,12 @@ export default async function Page({
           </LeadTypography>
         </div>
 
-        <Suspense
-          fallback={
-            <>
-              <TagFilterSkeleton />
-              <PostGridSkeleton />
-            </>
-          }
-        >
-          <BlogContent selectedTag={selectedTag} />
-        </Suspense>
+        <div className='pt-4'>
+          <BlogTab />
+        </div>
       </div>
+
+      <div className='py-8'>{children}</div>
     </AppLayout>
   );
 }

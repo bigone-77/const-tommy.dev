@@ -8,8 +8,8 @@ import {
   Sparkles,
 } from 'lucide-react';
 
+import { BlogCard } from '@/app/(blog-layout)/blog/_components/blog-card';
 import { AppLayout } from '@/components/app-layout';
-import { PostCard } from '@/components/post-card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { H2Typography } from '@/components/ui/typography';
@@ -21,7 +21,7 @@ import {
 import { getClient } from '@/lib/apollo-client';
 import { getFormattedDate } from '@/lib/utils';
 
-import { GET_POSTS } from './blog/page.queries';
+import { GET_POSTS } from './(blog-layout)/blog/page.queries';
 import { ProjectCard } from './project/_components/project-card';
 import { GET_PROJECTS } from './project/page.queries';
 import { TilCard } from './til/_components/til-card';
@@ -105,7 +105,7 @@ export default async function HomePage() {
                   .trim()
                   .slice(0, 120) + '...';
               return (
-                <PostCard
+                <BlogCard
                   key={post.id}
                   id={post.id}
                   url={`/blog/${post.id}`}
