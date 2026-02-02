@@ -15,24 +15,45 @@ export async function updatePostAction(id: string, _: any, formData: FormData) {
 
   const rawTags = formData.get('tags') as string;
   const parsedTags = rawTags ? JSON.parse(rawTags) : [];
+
+  const seriesId = formData.get('seriesId') as string;
+  const rawNewSeries = formData.get('newSeries') as string;
+  const newSeriesData = rawNewSeries ? JSON.parse(rawNewSeries) : null;
+
   const content = formData.get('content') as string;
 
   const validated = blogSchema.safeParse({
     title: formData.get('title'),
     content: content,
     tags: parsedTags,
+    seriesId: seriesId,
+    newSeries: newSeriesData,
   });
 
   if (!validated.success) {
     return { success: false, message: '입력값이 올바르지 않습니다.' };
   }
 
+  const { title, tags } = validated.data;
   const imageMatch = content.match(/!\[.*?\]\((.*?)\)/);
   const thumbnail = imageMatch ? imageMatch[1] : '';
 
-  const { title, tags } = validated.data;
-
   try {
+    let targetSeriesId: string | null = seriesId;
+
+    if (seriesId === 'none') {
+      targetSeriesId = null;
+    } else if (seriesId === 'new' && newSeriesData?.title) {
+      const createdSeries = await prisma.series.create({
+        data: {
+          title: newSeriesData.title,
+          thumbnail: newSeriesData.thumbnail || '',
+          authorId: session.user.id as string,
+        },
+      });
+      targetSeriesId = createdSeries.id;
+    }
+
     await prisma.post.update({
       where: { id },
       data: {
@@ -40,6 +61,7 @@ export async function updatePostAction(id: string, _: any, formData: FormData) {
         content,
         thumbnail,
         tags,
+        seriesId: targetSeriesId,
       },
     });
   } catch (e) {
@@ -52,6 +74,7 @@ export async function updatePostAction(id: string, _: any, formData: FormData) {
 
   revalidatePath(`/blog/${id}`);
   revalidatePath('/blog');
+  revalidatePath('/series');
 
   redirect(`/blog/${id}`);
 }

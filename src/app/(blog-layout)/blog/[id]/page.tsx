@@ -23,6 +23,7 @@ import { extractHeadings } from '@/lib/toc';
 import { getFormattedDate } from '@/lib/utils';
 import { getMDXComponents } from '@/mdx-components';
 
+import { BlogSeriesAccordion } from './_components/blog-series-accordion';
 import { GiscusComments } from './_components/giscus-comments';
 import { ViewCounter } from './_components/view-counter';
 import { deletePost } from './page.actions';
@@ -42,7 +43,10 @@ export default async function Page({ params }: Props) {
 
   if (!page) return notFound();
 
-  const { title, date, content, tags, viewCount, readingTime } = page.data;
+  const { title, date, content, tags, seriesId, viewCount, readingTime } =
+    page.data;
+
+  console.log(seriesId, 'seriesId');
 
   const headings = extractHeadings(content);
   const hasToc = headings?.length > 0;
@@ -81,19 +85,6 @@ export default async function Page({ params }: Props) {
         </div>
 
         <div className='space-y-4'>
-          {tags && tags.length > 0 && (
-            <div className='flex flex-wrap gap-3'>
-              {tags.map((tag: string) => (
-                <span
-                  key={tag}
-                  className='bg-muted text-muted-foreground flex h-6 w-fit items-center justify-center rounded-md border px-3 text-sm font-medium'
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-
           <H1Typography className='text-start leading-tight'>
             {title}
           </H1Typography>
@@ -113,7 +104,24 @@ export default async function Page({ params }: Props) {
               <span>{readingTime ?? 5} min read</span>
             </div>
           </div>
+
+          {tags && tags.length > 0 && (
+            <div className='flex flex-wrap gap-3'>
+              {tags.map((tag: string) => (
+                <span
+                  key={tag}
+                  className='bg-muted text-muted-foreground flex h-6 w-fit items-center justify-center rounded-md border px-3 text-sm font-medium'
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
+
+        {seriesId && (
+          <BlogSeriesAccordion seriesId={seriesId} currentPostId={id} />
+        )}
 
         <hr className='border-border/50' />
 
@@ -131,10 +139,7 @@ export default async function Page({ params }: Props) {
                     [
                       rehypePrettyCode,
                       {
-                        theme: {
-                          dark: 'one-dark-pro',
-                          light: 'github-light',
-                        },
+                        theme: { dark: 'one-dark-pro', light: 'github-light' },
                         keepBackground: true,
                         showLineNumbers: true,
                         onVisitLine(node: any) {
@@ -154,7 +159,11 @@ export default async function Page({ params }: Props) {
 
         <div className='mt-16 border-t pt-10'>
           <GiscusComments />
-          <ReadMoreSection currentId={id} currentTags={tags} />
+          <ReadMoreSection
+            currentId={id}
+            currentTags={tags}
+            currentSeriesId={seriesId}
+          />
         </div>
       </div>
 

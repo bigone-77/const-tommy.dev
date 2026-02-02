@@ -9,6 +9,18 @@ export const typeDefs = gql`
     image: String
     isAdmin: Boolean
     posts: [Post!]!
+    series: [Series!]!
+  }
+
+  type Series {
+    id: ID!
+    title: String!
+    thumbnail: String
+    posts: [Post!]!
+    author: User!
+    authorId: String!
+    createdAt: String!
+    updatedAt: String!
   }
 
   type Post {
@@ -22,6 +34,9 @@ export const typeDefs = gql`
     author: User!
     authorId: String!
     tags: [String!]!
+    series: Series
+    seriesId: String
+    seriesOrder: Int
     createdAt: String!
   }
 
@@ -63,6 +78,8 @@ export const typeDefs = gql`
     me: User
     allPosts: [Post!]!
     post(id: ID!): Post
+    allSeries: [Series!]!
+    series(id: ID!): Series
     allTils(fromDate: String, toDate: String): [Til!]!
     til(id: ID!): Til
     allProjects(

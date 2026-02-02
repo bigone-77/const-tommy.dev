@@ -1,16 +1,19 @@
 import Link from 'next/link';
 
+import { AppImage } from '@/components/app-image';
 import { getBlogSource } from '@/lib/source';
 import { getFormattedDate } from '@/lib/utils';
 
 interface ReadMoreSectionProps {
   currentId: string;
   currentTags?: string[];
+  currentSeriesId?: string | null;
 }
 
 export async function ReadMoreSection({
   currentId,
   currentTags = [],
+  currentSeriesId,
 }: ReadMoreSectionProps) {
   const blogSource = await getBlogSource();
   const allPages = blogSource.getPages();
@@ -18,6 +21,10 @@ export async function ReadMoreSection({
   const recommendedPosts = allPages
     .filter((page) => page.slugs[0] !== currentId)
     .map((page) => {
+      const isSameSeries =
+        currentSeriesId && page.data.seriesId === currentSeriesId;
+      const seriesScore = isSameSeries ? 1000 : 0;
+
       const tagOverlap = currentTags.filter((tag) =>
         page.data.tags?.includes(tag),
       ).length;
@@ -27,7 +34,7 @@ export async function ReadMoreSection({
         title: page.data.title,
         date: new Date(page.data.date),
         thumbnail: page.data.thumbnail,
-        relevanceScore: tagOverlap,
+        relevanceScore: seriesScore + tagOverlap,
       };
     })
     .sort((a, b) => {
@@ -50,15 +57,16 @@ export async function ReadMoreSection({
             href={post.url}
             className='group flex flex-col space-y-3'
           >
-            {post.thumbnail && (
-              <div className='bg-muted aspect-video overflow-hidden rounded-xl border'>
-                <img
-                  src={post.thumbnail}
-                  alt={post.title}
-                  className='h-full w-full object-cover transition-transform group-hover:scale-105'
-                />
-              </div>
-            )}
+            <div className='aspect-video overflow-hidden rounded-xl border shadow-sm transition-shadow group-hover:shadow-md'>
+              <AppImage
+                src={post.thumbnail}
+                alt={post.title}
+                fill
+                imageClassName='object-cover'
+                sizes='(max-width: 768px) 100vw, 33vw'
+              />
+            </div>
+
             <div className='space-y-1'>
               <h3 className='group-hover:text-primary line-clamp-1 font-bold transition-colors'>
                 {post.title}

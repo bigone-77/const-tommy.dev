@@ -10,6 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { TIL_TEMPLATES, TITLE_SUFFIXES } from '@/constants/til-templates';
 import { cn, getFormattedDate } from '@/lib/utils';
 
+import { SeriesSelector } from '../editor/series-selector';
+
 export function PostEditor({
   mode,
   register,
@@ -25,6 +27,7 @@ export function PostEditor({
   const watchedTags = useWatch({ control, name: 'tags', defaultValue: [] });
   const contentValue = useWatch({ control, name: 'content', defaultValue: '' });
 
+  // TIL 전용 태그 클릭 핸들러
   const handleTilTagClick = (
     tag: string,
     fieldOnChange: (val: string[]) => void,
@@ -99,6 +102,11 @@ export function PostEditor({
           className='placeholder:text-muted-foreground/30 min-h-[1.4em] w-full resize-none border-none bg-transparent px-0 py-0 !text-4xl font-bold shadow-none focus-visible:ring-0'
         />
       </div>
+
+      {/* 시리즈 선택 영역 */}
+      {mode === 'blog' && (
+        <SeriesSelector control={control} setValue={setValue} />
+      )}
 
       {/* 태그 영역 */}
       {mode === 'blog' ? (

@@ -10,6 +10,7 @@ const config: CodegenConfig = {
         mappers: {
           User: '@prisma/client#User as PrismaUser',
           Post: '@prisma/client#Post as PrismaPost',
+          Series: '@prisma/client#Series as PrismaSeries',
           Til: '@/lib/prisma#Til',
           Project: '@/lib/prisma#Project',
         },

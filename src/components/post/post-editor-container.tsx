@@ -22,7 +22,7 @@ interface PostEditorContainerProps {
 
 export function PostEditorContainer({
   mode,
-  initialData = { title: '', content: '', tags: [] },
+  initialData = { title: '', content: '', tags: [], seriesId: 'none' }, // seriesId 기본값 추가
   action,
   submitLabel,
 }: PostEditorContainerProps) {
@@ -45,12 +45,22 @@ export function PostEditorContainer({
     content: watchedValues.content || '',
   });
 
+  // 🟢 이 onSubmit 함수가 핵심입니다!
   const onSubmit = (data: any) => {
     startTransition(() => {
       const formData = new FormData();
       formData.append('title', data.title);
       formData.append('content', data.content);
       formData.append('tags', JSON.stringify(data.tags));
+
+      if (data.seriesId) {
+        formData.append('seriesId', data.seriesId);
+      }
+
+      if (data.seriesId === 'new' && data.newSeries) {
+        formData.append('newSeries', JSON.stringify(data.newSeries));
+      }
+
       formAction(formData);
     });
   };

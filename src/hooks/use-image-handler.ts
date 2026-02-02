@@ -6,7 +6,7 @@ import { FieldValues, Path, PathValue, UseFormSetValue } from 'react-hook-form';
 import { getCloudinarySignature } from '@/lib/cloudinary';
 
 interface UseImageHandlerProps<T extends FieldValues> {
-  mode: 'blog' | 'til';
+  mode: 'blog' | 'til' | 'series';
   textareaRef: React.RefObject<HTMLTextAreaElement | null>;
   setValue: UseFormSetValue<T>;
   content: string;
@@ -22,6 +22,7 @@ export function useImageHandler<T extends FieldValues>({
 
   const uploadFile = async (file: File): Promise<string | null> => {
     try {
+      setIsUploading(true);
       const { signature, timestamp } = await getCloudinarySignature(mode);
 
       const formData = new FormData();
@@ -39,8 +40,10 @@ export function useImageHandler<T extends FieldValues>({
       const data = await response.json();
       return data.secure_url || null;
     } catch (error) {
-      console.error('Signed Upload Error:', error);
+      console.error('Upload Error:', error);
       return null;
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -85,5 +88,5 @@ export function useImageHandler<T extends FieldValues>({
     }
   };
 
-  return { handleImageUpload, isUploading };
+  return { uploadFile, handleImageUpload, isUploading };
 }

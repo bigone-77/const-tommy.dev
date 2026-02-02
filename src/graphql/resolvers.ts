@@ -7,13 +7,10 @@ export const resolvers: Resolvers = {
   Query: {
     me: async (_parent, _args, context) => {
       if (!context.session?.user?.username) return null;
-
       const user = await prisma.user.findUnique({
         where: { username: context.session.user.username },
       });
-
       if (!user) return null;
-
       return {
         ...user,
         isAdmin: context.session.user.isAdmin,
@@ -22,7 +19,7 @@ export const resolvers: Resolvers = {
 
     allPosts: async () => {
       return await prisma.post.findMany({
-        include: { author: true },
+        include: { author: true, series: true },
         orderBy: { createdAt: 'desc' },
       });
     },
@@ -30,7 +27,32 @@ export const resolvers: Resolvers = {
     post: async (_parent, { id }) => {
       return await prisma.post.findUnique({
         where: { id },
-        include: { author: true },
+        include: { author: true, series: true },
+      });
+    },
+
+    allSeries: async () => {
+      return await prisma.series.findMany({
+        include: {
+          author: true,
+          posts: {
+            include: { author: true },
+          },
+        },
+        orderBy: { createdAt: 'desc' },
+      });
+    },
+
+    series: async (_parent, { id }) => {
+      return await prisma.series.findUnique({
+        where: { id },
+        include: {
+          author: true,
+          posts: {
+            orderBy: { createdAt: 'asc' },
+            include: { author: true },
+          },
+        },
       });
     },
 
@@ -67,16 +89,12 @@ export const resolvers: Resolvers = {
           published: true,
         },
         take: take ?? undefined,
-        orderBy: {
-          createdAt: 'desc',
-        },
+        orderBy: { createdAt: 'desc' },
       });
     },
 
     project: async (_parent, { id }) => {
-      return await prisma.project.findUnique({
-        where: { id },
-      });
+      return await prisma.project.findUnique({ where: { id } });
     },
   },
 };

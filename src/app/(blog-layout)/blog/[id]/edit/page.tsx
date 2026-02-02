@@ -26,6 +26,7 @@ export default async function Page({
           title: post.title,
           content: post.content,
           tags: post.tags,
+          seriesId: post.seriesId,
         }}
         action={boundAction}
         submitLabel='수정하기'

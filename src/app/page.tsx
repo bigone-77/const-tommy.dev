@@ -6,6 +6,7 @@ import {
   FolderCode,
   PenTool,
   Sparkles,
+  Terminal,
 } from 'lucide-react';
 
 import { BlogCard } from '@/app/(blog-layout)/blog/_components/blog-card';
@@ -49,33 +50,50 @@ export default async function HomePage() {
 
   const recentBlogs = blogRes.data?.allPosts?.slice(0, 3) || [];
   const recentTils = tilsRes.data?.allTils?.slice(0, 3) || [];
-
   const featuredProjects = projectsRes.data?.allProjects || [];
 
   return (
     <AppLayout className='pt-0'>
-      <div className='flex flex-col gap-y-24 py-12'>
-        {/* 1. 히어로 섹션 */}
-        <section className='space-y-8'>
-          <div className='space-y-4'>
+      <div className='flex flex-col gap-y-20 py-8 md:gap-y-24 md:py-12'>
+        <section className='space-y-8 py-4 md:py-6'>
+          <div className='space-y-6'>
             <Badge
               variant='secondary'
-              className='bg-primary/10 text-primary border-none px-3 py-1 text-xs font-medium'
+              className='bg-primary/10 text-primary border-none px-3 py-1 text-[10px] font-black tracking-widest uppercase md:text-xs'
             >
-              <Sparkles className='mr-2 h-3 w-3' /> Junior Frontend developer
+              <Sparkles className='mr-2 h-3 w-3' /> Front-end Engineer
             </Badge>
-            <h1 className='text-left text-4xl leading-[1.2] font-black tracking-tight lg:text-6xl'>
-              ✋ Hello, Tommy
-            </h1>
+
+            <div className='space-y-5'>
+              <div className='flex flex-col gap-3 md:flex-row md:items-center md:gap-4'>
+                <div className='flex items-center gap-3'>
+                  <Terminal
+                    className='text-primary h-8 w-8 shrink-0 md:h-12 lg:h-14 lg:w-14'
+                    strokeWidth={2.5}
+                  />
+                  <h1 className='text-4xl leading-tight font-black tracking-tighter sm:text-6xl lg:text-7xl'>
+                    <span className='text-primary whitespace-nowrap'>
+                      const
+                    </span>
+                    <span className='whitespace-nowrap'>-tommy.dev</span>
+                  </h1>
+                </div>
+              </div>
+
+              <p className='text-muted-foreground max-w-[600px] text-base leading-relaxed font-medium break-keep md:text-xl'>
+                빠르게 변하는 기술 사이에서{' '}
+                <span className='text-foreground font-bold'>
+                  변하지 않는 본질
+                </span>
+                을 고민하고 기록합니다.
+              </p>
+            </div>
           </div>
-          <p className='text-muted-foreground max-w-[700px] text-lg leading-relaxed md:text-xl'>
-            과거의 내가 내린 최선의 선택이, 시간이 흐른 뒤에도 여전히 기분 좋은
-            정답으로 남도록.
-          </p>
+
           <Button
             size='lg'
             asChild
-            className='shadow-primary/20 rounded-full px-8 shadow-lg transition-all hover:-translate-y-1'
+            className='shadow-primary/20 w-full rounded-full px-8 font-bold shadow-lg transition-all hover:-translate-y-1 sm:w-fit'
           >
             <Link href='/about-me'>소개 더보기</Link>
           </Button>

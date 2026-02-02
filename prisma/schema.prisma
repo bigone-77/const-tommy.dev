@@ -55,6 +55,7 @@ model User {
   sessions      Session[]
   posts         Post[]    
   tils          Til[]
+  series        Series[] 
 
   @@map("users")
 }
@@ -71,29 +72,38 @@ model VerificationToken {
 model Series {
   id          String   @id @default(dbgenerated("gen_random_uuid()"))
   title       String   @unique
-  description String?  @db.VarChar(200)
   thumbnail   String?
   posts       Post[]
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@index([authorId])
 }
 
 model Post {
   id          String    @id @default(dbgenerated("gen_random_uuid()"))
   title       String
-  content     String
+  content     String    @db.Text
   thumbnail   String?
   tags        String[]
   published   Boolean   @default(false)
   viewCount   Int       @default(0)
   readingTime Int       @default(0)
   viewLogs    ViewLog[]
+  
   author      User      @relation(fields: [authorId], references: [id])
   authorId    String
+  
   seriesId    String?
   series      Series?   @relation(fields: [seriesId], references: [id], onDelete: SetNull)
-  seriesOrder Int? 
+  seriesOrder Int?     
+  
   createdAt   DateTime  @default(now())
+
+  @@index([seriesId])
+  @@index([authorId])
 }
 
 model Til {

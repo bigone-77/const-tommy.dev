@@ -18,6 +18,7 @@ import {
 
 const ROUTE_MAP: Record<string, string> = {
   blog: '블로그',
+  series: '블로그',
   til: '오늘 배운 것',
   project: '프로젝트',
   'about-me': '소개',
@@ -41,7 +42,7 @@ export function AppBreadCrumb() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href='/'>Hello, Tommy</Link>
+            <Link href='/'>Home</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
 

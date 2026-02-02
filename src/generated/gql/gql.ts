@@ -14,14 +14,20 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
+    "\n  # 🟢 String! 대신 ID!를 사용해야 합니다.\n  query GetSeriesNav($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      posts {\n        id\n        title\n      }\n    }\n  }\n": typeof types.GetSeriesNavDocument,
     "\n  query GetPosts {\n    allPosts {\n      id\n      title\n      content\n      thumbnail\n      tags\n      createdAt\n      viewCount\n      readingTime\n      author {\n        username\n      }\n    }\n  }\n": typeof types.GetPostsDocument,
+    "\n  query GetSeriesDetail($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      thumbnail\n      posts {\n        id\n        title\n        content\n        thumbnail\n        tags\n        createdAt\n        viewCount\n        readingTime\n        author {\n          username\n        }\n      }\n    }\n  }\n": typeof types.GetSeriesDetailDocument,
+    "\n  query GetSeriesList {\n    allSeries {\n      id\n      title\n      thumbnail\n      createdAt\n      posts {\n        id\n      }\n    }\n  }\n": typeof types.GetSeriesListDocument,
     "\n  query GetProjects($isFeatured: Boolean, $status: ProjectStatus, $take: Int) {\n    allProjects(isFeatured: $isFeatured, status: $status, take: $take) {\n      id\n      title\n      description\n      thumbnail\n      techStack\n      techHighlights\n      period\n      status\n      isFeatured\n      githubUrl\n      liveUrl\n      createdAt\n    }\n  }\n": typeof types.GetProjectsDocument,
     "\n  query GetProject($id: ID!) {\n    project(id: $id) {\n      id\n      title\n      description\n      thumbnail\n      techStack\n      techHighlights\n      period\n      status\n      isFeatured\n      githubUrl\n      liveUrl\n      content\n      createdAt\n    }\n  }\n": typeof types.GetProjectDocument,
     "\n  query GetTilSummary($fromDate: String) {\n    allTils(fromDate: $fromDate) {\n      id\n      createdAt\n    }\n  }\n": typeof types.GetTilSummaryDocument,
     "\n  query GetDailyTils($fromDate: String, $toDate: String) {\n    allTils(fromDate: $fromDate, toDate: $toDate) {\n      id\n      title\n      content\n      tags\n      createdAt\n    }\n  }\n": typeof types.GetDailyTilsDocument,
 };
 const documents: Documents = {
+    "\n  # 🟢 String! 대신 ID!를 사용해야 합니다.\n  query GetSeriesNav($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      posts {\n        id\n        title\n      }\n    }\n  }\n": types.GetSeriesNavDocument,
     "\n  query GetPosts {\n    allPosts {\n      id\n      title\n      content\n      thumbnail\n      tags\n      createdAt\n      viewCount\n      readingTime\n      author {\n        username\n      }\n    }\n  }\n": types.GetPostsDocument,
+    "\n  query GetSeriesDetail($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      thumbnail\n      posts {\n        id\n        title\n        content\n        thumbnail\n        tags\n        createdAt\n        viewCount\n        readingTime\n        author {\n          username\n        }\n      }\n    }\n  }\n": types.GetSeriesDetailDocument,
+    "\n  query GetSeriesList {\n    allSeries {\n      id\n      title\n      thumbnail\n      createdAt\n      posts {\n        id\n      }\n    }\n  }\n": types.GetSeriesListDocument,
     "\n  query GetProjects($isFeatured: Boolean, $status: ProjectStatus, $take: Int) {\n    allProjects(isFeatured: $isFeatured, status: $status, take: $take) {\n      id\n      title\n      description\n      thumbnail\n      techStack\n      techHighlights\n      period\n      status\n      isFeatured\n      githubUrl\n      liveUrl\n      createdAt\n    }\n  }\n": types.GetProjectsDocument,
     "\n  query GetProject($id: ID!) {\n    project(id: $id) {\n      id\n      title\n      description\n      thumbnail\n      techStack\n      techHighlights\n      period\n      status\n      isFeatured\n      githubUrl\n      liveUrl\n      content\n      createdAt\n    }\n  }\n": types.GetProjectDocument,
     "\n  query GetTilSummary($fromDate: String) {\n    allTils(fromDate: $fromDate) {\n      id\n      createdAt\n    }\n  }\n": types.GetTilSummaryDocument,
@@ -45,7 +51,19 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  # 🟢 String! 대신 ID!를 사용해야 합니다.\n  query GetSeriesNav($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      posts {\n        id\n        title\n      }\n    }\n  }\n"): (typeof documents)["\n  # 🟢 String! 대신 ID!를 사용해야 합니다.\n  query GetSeriesNav($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      posts {\n        id\n        title\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  query GetPosts {\n    allPosts {\n      id\n      title\n      content\n      thumbnail\n      tags\n      createdAt\n      viewCount\n      readingTime\n      author {\n        username\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetPosts {\n    allPosts {\n      id\n      title\n      content\n      thumbnail\n      tags\n      createdAt\n      viewCount\n      readingTime\n      author {\n        username\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query GetSeriesDetail($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      thumbnail\n      posts {\n        id\n        title\n        content\n        thumbnail\n        tags\n        createdAt\n        viewCount\n        readingTime\n        author {\n          username\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetSeriesDetail($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      thumbnail\n      posts {\n        id\n        title\n        content\n        thumbnail\n        tags\n        createdAt\n        viewCount\n        readingTime\n        author {\n          username\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query GetSeriesList {\n    allSeries {\n      id\n      title\n      thumbnail\n      createdAt\n      posts {\n        id\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetSeriesList {\n    allSeries {\n      id\n      title\n      thumbnail\n      createdAt\n      posts {\n        id\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

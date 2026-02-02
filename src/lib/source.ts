@@ -8,6 +8,7 @@ interface MyBlogConfig {
     date: Date;
     content: string;
     tags: string[];
+    seriesId?: string;
     thumbnail?: string | null;
     viewCount: number;
     readingTime: number;
@@ -40,6 +41,7 @@ export async function getBlogSource() {
         date: post.createdAt,
         content: post.content,
         tags: post.tags,
+        seriesId: post.seriesId,
         thumbnail: post.thumbnail,
         viewCount: post.viewCount,
         readingTime: post.readingTime,

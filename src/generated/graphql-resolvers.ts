@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { User as PrismaUser, Post as PrismaPost } from '@prisma/client';
+import { User as PrismaUser, Post as PrismaPost, Series as PrismaSeries } from '@prisma/client';
 import { Til, Project } from '@/lib/prisma';
 import { ContextValue } from '@/app/api/graphql/route';
 export type Maybe<T> = T | null;
@@ -28,6 +28,9 @@ export type Post = {
   id: Scalars['ID']['output'];
   published: Scalars['Boolean']['output'];
   readingTime: Scalars['Int']['output'];
+  series?: Maybe<Series>;
+  seriesId?: Maybe<Scalars['String']['output']>;
+  seriesOrder?: Maybe<Scalars['Int']['output']>;
   tags: Array<Scalars['String']['output']>;
   thumbnail?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
@@ -62,10 +65,12 @@ export type Query = {
   __typename?: 'Query';
   allPosts: Array<Post>;
   allProjects: Array<Project>;
+  allSeries: Array<Series>;
   allTils: Array<Til>;
   me?: Maybe<User>;
   post?: Maybe<Post>;
   project?: Maybe<Project>;
+  series?: Maybe<Series>;
   til?: Maybe<Til>;
 };
 
@@ -93,8 +98,25 @@ export type QueryProjectArgs = {
 };
 
 
+export type QuerySeriesArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type QueryTilArgs = {
   id: Scalars['ID']['input'];
+};
+
+export type Series = {
+  __typename?: 'Series';
+  author: User;
+  authorId: Scalars['String']['output'];
+  createdAt: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  posts: Array<Post>;
+  thumbnail?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  updatedAt: Scalars['String']['output'];
 };
 
 export type Til = {
@@ -117,6 +139,7 @@ export type User = {
   isAdmin?: Maybe<Scalars['Boolean']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   posts: Array<Post>;
+  series: Array<Series>;
   username: Scalars['String']['output'];
 };
 
@@ -200,6 +223,7 @@ export type ResolversTypes = {
   Project: ResolverTypeWrapper<Project>;
   ProjectStatus: ProjectStatus;
   Query: ResolverTypeWrapper<Record<PropertyKey, never>>;
+  Series: ResolverTypeWrapper<PrismaSeries>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   Til: ResolverTypeWrapper<Til>;
   User: ResolverTypeWrapper<PrismaUser>;
@@ -213,6 +237,7 @@ export type ResolversParentTypes = {
   Post: PrismaPost;
   Project: Project;
   Query: Record<PropertyKey, never>;
+  Series: PrismaSeries;
   String: Scalars['String']['output'];
   Til: Til;
   User: PrismaUser;
@@ -226,6 +251,9 @@ export type PostResolvers<ContextType = ContextValue, ParentType extends Resolve
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   published?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   readingTime?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  series?: Resolver<Maybe<ResolversTypes['Series']>, ParentType, ContextType>;
+  seriesId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  seriesOrder?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   tags?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -252,11 +280,24 @@ export type ProjectResolvers<ContextType = ContextValue, ParentType extends Reso
 export type QueryResolvers<ContextType = ContextValue, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   allPosts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>;
   allProjects?: Resolver<Array<ResolversTypes['Project']>, ParentType, ContextType, Partial<QueryAllProjectsArgs>>;
+  allSeries?: Resolver<Array<ResolversTypes['Series']>, ParentType, ContextType>;
   allTils?: Resolver<Array<ResolversTypes['Til']>, ParentType, ContextType, Partial<QueryAllTilsArgs>>;
   me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   post?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<QueryPostArgs, 'id'>>;
   project?: Resolver<Maybe<ResolversTypes['Project']>, ParentType, ContextType, RequireFields<QueryProjectArgs, 'id'>>;
+  series?: Resolver<Maybe<ResolversTypes['Series']>, ParentType, ContextType, RequireFields<QuerySeriesArgs, 'id'>>;
   til?: Resolver<Maybe<ResolversTypes['Til']>, ParentType, ContextType, RequireFields<QueryTilArgs, 'id'>>;
+};
+
+export type SeriesResolvers<ContextType = ContextValue, ParentType extends ResolversParentTypes['Series'] = ResolversParentTypes['Series']> = {
+  author?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  authorId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  posts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>;
+  thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };
 
 export type TilResolvers<ContextType = ContextValue, ParentType extends ResolversParentTypes['Til'] = ResolversParentTypes['Til']> = {
@@ -277,6 +318,7 @@ export type UserResolvers<ContextType = ContextValue, ParentType extends Resolve
   isAdmin?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   posts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>;
+  series?: Resolver<Array<ResolversTypes['Series']>, ParentType, ContextType>;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };
 
@@ -284,6 +326,7 @@ export type Resolvers<ContextType = ContextValue> = {
   Post?: PostResolvers<ContextType>;
   Project?: ProjectResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Series?: SeriesResolvers<ContextType>;
   Til?: TilResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };

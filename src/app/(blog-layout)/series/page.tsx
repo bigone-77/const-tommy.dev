@@ -1,48 +1,56 @@
+import { AppLayout } from '@/components/app-layout';
+import { getClient } from '@/lib/apollo-client';
+import { auth } from '@/lib/auth';
 import { getFormattedDate } from '@/lib/utils';
 
 import { SeriesCard } from './_components/series-card';
+import { GET_SERIES_LIST } from './page.queries';
 
-const DUMMY_SERIES = [
-  {
-    id: 'nextjs-15-arch',
-    title: 'Next.js 15 실무 아키텍처 가이드',
-    description: 'App Router와 Server Actions를 활용한 고성능 웹 서비스 구축기',
-    thumbnail:
-      'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?q=80&w=1000&auto=format&fit=crop',
-    postCount: 5,
-    createdAt: new Date().getTime().toString(),
-  },
-  {
-    id: 'frontend-performance',
-    title: '프론트엔드 성능 최적화 가이드',
-    description:
-      'Lighthouse 점수를 넘어 실제 사용자 경험을 개선하는 기술적 접근법',
-    thumbnail:
-      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1000&auto=format&fit=crop',
-    postCount: 3,
-    createdAt: new Date().getTime().toString(),
-  },
-];
+export default async function SeriesPage() {
+  const session = await auth();
+  const isAdmin = session?.user?.isAdmin;
 
-export default function SeriesPage() {
+  const { data } = await getClient().query({
+    query: GET_SERIES_LIST,
+    fetchPolicy: 'no-cache',
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 3600,
+        },
+      },
+    },
+  });
+
+  const seriesList = data?.allSeries || [];
+
   return (
-    <div className='animate-in fade-in slide-in-from-bottom-2 duration-500'>
-      <div className='grid grid-cols-1 gap-10 md:gap-y-16 lg:grid-cols-3 lg:gap-x-12'>
-        {DUMMY_SERIES.map((item) => (
-          <SeriesCard
-            key={item.id}
-            title={item.title}
-            thumbnail={item.thumbnail}
-            postCount={item.postCount}
-            excerpt={item.description}
-            date={getFormattedDate(
-              new Date(Number(item.createdAt)),
-              'M월 d일, yyyy년',
-            )}
-            url={`/series/${item.id}`}
-          />
-        ))}
+    <AppLayout>
+      <div className='animate-in fade-in slide-in-from-bottom-2 duration-500'>
+        <div className='grid grid-cols-1 gap-10 md:gap-y-16 lg:grid-cols-3 lg:gap-x-12'>
+          {seriesList.length > 0 ? (
+            seriesList.map((item) => (
+              <SeriesCard
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                thumbnail={item.thumbnail || ''}
+                postCount={item.posts.length}
+                isAdmin={isAdmin}
+                date={getFormattedDate(
+                  new Date(Number(item.createdAt)),
+                  'M월 d일, yyyy년',
+                )}
+                url={`/series/${item.id}`}
+              />
+            ))
+          ) : (
+            <div className='text-muted-foreground col-span-full py-20 text-center'>
+              작성된 시리즈가 아직 없습니다.
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }

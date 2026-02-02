@@ -88,7 +88,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 const isActive =
                   item.href === '/'
                     ? pathname === '/'
-                    : pathname.startsWith(item.href);
+                    : pathname.startsWith(item.href) ||
+                      (item.href === '/blog' && pathname.startsWith('/series'));
                 return (
                   <SidebarMenuItem key={item.href}>
                     <SidebarMenuButton
