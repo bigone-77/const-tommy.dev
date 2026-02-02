@@ -23,8 +23,28 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Tommy Tech Blog',
-  description: '프론트엔드 개발 로그',
+  title: {
+    default: 'const-tommy.dev | Front-end Engineering Archive',
+    template: '%s | const-tommy.dev',
+  },
+  description: '프론트엔드 개발자 Tommy의 개인 기술 아카이브입니다.',
+
+  openGraph: {
+    title: 'const-tommy.dev | Front-end Engineering Archive',
+    description: '프론트엔드 개발자 Tommy의 본질을 담은 기록들.',
+    url: 'https://const-tommy.dev',
+    siteName: 'const-tommy.dev',
+    locale: 'ko_KR',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'const-tommy.dev 로고',
+      },
+    ],
+  },
 };
 
 export default async function RootLayout({
