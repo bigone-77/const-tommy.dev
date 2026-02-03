@@ -12,11 +12,11 @@
     "codegen:watch": "graphql-codegen --config codegen.ts --watch",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
+    "db:studio:prod": "NODE_ENV=production npx prisma studio",
     "db:gen": "prisma generate",
     "db:sync": "prisma db push && prisma generate && graphql-codegen --config codegen.ts",
     "postinstall": "prisma generate",
     "db:seed": "npx prisma db seed",
-    "db:seed:dev": "NODE_ENV=development npx prisma db seed",
     "db:seed:prod": "NODE_ENV=production npx prisma db seed",
     "db:reset:prod": "NODE_ENV=production npx prisma db push --force-reset && npm run db:seed:prod"
   },

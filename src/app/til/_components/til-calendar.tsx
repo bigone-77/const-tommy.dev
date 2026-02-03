@@ -17,22 +17,21 @@ export async function TilCalendar({ selectedDate }: { selectedDate: Date }) {
   });
 
   const tilCounts: Record<string, number> = {};
+
+  const kstFormatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+
   (data?.allTils ?? []).forEach((til: any) => {
     const d = /^\d+$/.test(String(til.createdAt))
       ? new Date(Number(til.createdAt))
       : new Date(til.createdAt);
 
     if (!isNaN(d.getTime())) {
-      const key = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'Asia/Seoul',
-        weekday: 'short',
-        month: 'short',
-        day: '2-digit',
-        year: 'numeric',
-      })
-        .format(d)
-        .replace(/,/g, '');
-
+      const key = kstFormatter.format(d);
       tilCounts[key] = (tilCounts[key] || 0) + 1;
     }
   });

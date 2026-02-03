@@ -38,8 +38,9 @@ export function TilCalendarClient({ selectedDate, tilCounts }: Props) {
         onSelect={handleDateSelect}
         className='border-border bg-card w-full rounded-xl border shadow-sm'
         modifiers={{
-          hasTil: (date) => tilCounts[date.toDateString()] === 1,
-          highActivity: (date) => (tilCounts[date.toDateString()] || 0) >= 2,
+          hasTil: (date) => tilCounts[format(date, 'yyyy-MM-dd')] === 1,
+          highActivity: (date) =>
+            (tilCounts[format(date, 'yyyy-MM-dd')] || 0) >= 2,
         }}
         modifiersClassNames={{
           hasTil: 'bg-primary/20 text-primary font-bold hover:bg-primary/30',

@@ -25,7 +25,6 @@ export default async function Page({
 }: {
   searchParams: Promise<{ date?: string }>;
 }) {
-  // 🚀 블로그와 동일한 어드민 체크 로직
   const session = await auth();
   const isAdmin = session?.user?.isAdmin;
 
@@ -34,7 +33,6 @@ export default async function Page({
 
   return (
     <AppLayout>
-      {/* 🚀 블로그와 동일한 Flicker 배경 장식 */}
       <div className='absolute top-0 left-0 z-0 h-50 w-full [mask-image:linear-gradient(to_top,transparent_25%,black_95%)]'>
         <FlickeringGrid
           className='absolute top-0 left-0 size-full'
@@ -78,7 +76,6 @@ export default async function Page({
           </LeadTypography>
         </header>
 
-        {/* 🚀 기존 데이터 차트 및 리스트 섹션 */}
         <div className='space-y-12'>
           <Suspense fallback={<TilChartSkeleton />}>
             <TilChart />
