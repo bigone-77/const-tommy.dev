@@ -1,14 +1,12 @@
 import { subDays } from 'date-fns';
 
 import { getClient } from '@/lib/apollo-client';
-import { cn, getFormattedDate } from '@/lib/utils';
+import { cn, getFormattedDate, getNowKst } from '@/lib/utils';
 
 import { GET_TIL_SUMMARY } from '../page.queries';
 
 export async function TilChart() {
-  const nowKst = new Date(
-    new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }),
-  );
+  const nowKst = getNowKst();
 
   const { data } = await getClient().query({
     query: GET_TIL_SUMMARY,
@@ -22,25 +20,18 @@ export async function TilChart() {
   const tils = data?.allTils ?? [];
   const last7Days = Array.from({ length: 7 }, (_, i) => subDays(nowKst, 6 - i));
 
-  const kstFormat = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Asia/Seoul',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  });
-
   const chartData = last7Days.map((day) => {
-    const dayStr = kstFormat.format(day);
+    const dayKey = getFormattedDate(day, 'yyyy-MM-dd');
     const count = tils.filter((til: any) => {
       const d = /^\d+$/.test(String(til.createdAt))
         ? new Date(Number(til.createdAt))
         : new Date(til.createdAt);
-      return kstFormat.format(d) === dayStr;
+      return getFormattedDate(d, 'yyyy-MM-dd') === dayKey;
     }).length;
 
     return {
       label: getFormattedDate(day, 'MM.dd'),
-      fullDate: dayStr,
+      fullDate: dayKey,
       count,
     };
   });

@@ -27,8 +27,8 @@ export default async function Page({
 }) {
   const session = await auth();
   const isAdmin = session?.user?.isAdmin;
-
   const resolvedParams = await searchParams;
+
   const validDate = parseTilDate(resolvedParams.date);
 
   return (
@@ -70,7 +70,6 @@ export default async function Page({
               </Button>
             )}
           </div>
-
           <LeadTypography className='text-muted-foreground/70'>
             잊어버리기 싫어서 기록하는 오늘의 날것들. 하나씩 채워가는 중입니다.
           </LeadTypography>
@@ -80,14 +79,12 @@ export default async function Page({
           <Suspense fallback={<TilChartSkeleton />}>
             <TilChart />
           </Suspense>
-
           <div className='flex flex-col gap-y-12 lg:grid lg:grid-cols-[300px_1fr] lg:gap-x-12 lg:gap-y-0'>
             <aside className='w-full'>
               <Suspense fallback={<TilCalendarSkeleton />}>
                 <TilCalendar selectedDate={validDate} />
               </Suspense>
             </aside>
-
             <section className='space-y-10'>
               <Suspense fallback={<TilDailySkeleton />}>
                 <TilCardList selectedDate={validDate} />

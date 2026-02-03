@@ -31,10 +31,7 @@ export async function TilCardList({ selectedDate }: { selectedDate: Date }) {
               title={til.title}
               tags={til.tags}
               content={til.content}
-              date={getFormattedDate(
-                new Date(Number(til.createdAt)),
-                'yyyy. MM. dd',
-              )}
+              date={getFormattedDate(til.createdAt, 'yyyy. MM. dd')}
             />
           ))}
         </div>
