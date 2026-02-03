@@ -1,4 +1,4 @@
-import { format, isSameDay, subDays } from 'date-fns';
+import { subDays } from 'date-fns';
 
 import { getClient } from '@/lib/apollo-client';
 import { cn, getFormattedDate } from '@/lib/utils';
@@ -6,34 +6,44 @@ import { cn, getFormattedDate } from '@/lib/utils';
 import { GET_TIL_SUMMARY } from '../page.queries';
 
 export async function TilChart() {
+  const nowKst = new Date(
+    new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }),
+  );
+
   const { data } = await getClient().query({
     query: GET_TIL_SUMMARY,
     variables: {
-      fromDate: getFormattedDate(subDays(new Date(), 6), 'yyyy-MM-dd'),
+      fromDate: getFormattedDate(subDays(nowKst, 6), 'yyyy-MM-dd'),
     },
     fetchPolicy: 'no-cache',
     context: { fetchOptions: { cache: 'no-store' } },
   });
 
   const tils = data?.allTils ?? [];
-  const last7Days = Array.from({ length: 7 }, (_, i) =>
-    subDays(new Date(), 6 - i),
-  );
+  const last7Days = Array.from({ length: 7 }, (_, i) => subDays(nowKst, 6 - i));
+
+  const kstFormat = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
 
   const chartData = last7Days.map((day) => {
+    const dayStr = kstFormat.format(day);
     const count = tils.filter((til: any) => {
       const d = /^\d+$/.test(String(til.createdAt))
         ? new Date(Number(til.createdAt))
         : new Date(til.createdAt);
-      return isSameDay(d, day);
+      return kstFormat.format(d) === dayStr;
     }).length;
+
     return {
-      label: format(day, 'MM.dd'),
-      fullDate: format(day, 'yyyy-MM-dd'),
+      label: getFormattedDate(day, 'MM.dd'),
+      fullDate: dayStr,
       count,
     };
   });
-
   return (
     <div className='bg-card border-border rounded-xl border p-6 shadow-sm'>
       <div className='mb-6 flex items-end justify-between'>

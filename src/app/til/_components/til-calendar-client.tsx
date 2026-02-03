@@ -2,11 +2,11 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
-import { format } from 'date-fns';
 import { GraduationCap } from 'lucide-react';
 
 import { Calendar } from '@/components/ui/calendar';
 import { H2Typography } from '@/components/ui/typography';
+import { getFormattedDate } from '@/lib/utils';
 
 interface Props {
   selectedDate: Date;
@@ -19,7 +19,7 @@ export function TilCalendarClient({ selectedDate, tilCounts }: Props) {
 
   const handleDateSelect = (date: Date | undefined) => {
     if (date) {
-      router.push(`${pathname}?date=${format(date, 'yyyy-MM-dd')}`);
+      router.push(`${pathname}?date=${getFormattedDate(date, 'yyyy-MM-dd')}`);
     }
   };
 
@@ -38,9 +38,10 @@ export function TilCalendarClient({ selectedDate, tilCounts }: Props) {
         onSelect={handleDateSelect}
         className='border-border bg-card w-full rounded-xl border shadow-sm'
         modifiers={{
-          hasTil: (date) => tilCounts[format(date, 'yyyy-MM-dd')] === 1,
+          hasTil: (date) =>
+            tilCounts[getFormattedDate(date, 'yyyy-MM-dd')] === 1,
           highActivity: (date) =>
-            (tilCounts[format(date, 'yyyy-MM-dd')] || 0) >= 2,
+            (tilCounts[getFormattedDate(date, 'yyyy-MM-dd')] || 0) >= 2,
         }}
         modifiersClassNames={{
           hasTil: 'bg-primary/20 text-primary font-bold hover:bg-primary/30',

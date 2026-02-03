@@ -1,5 +1,3 @@
-import { endOfDay, startOfDay } from 'date-fns';
-
 import { getClient } from '@/lib/apollo-client';
 import { getFormattedDate } from '@/lib/utils';
 
@@ -7,8 +5,9 @@ import { GET_DAILY_TILS } from '../page.queries';
 import { TilCard } from './til-card';
 
 export async function TilCardList({ selectedDate }: { selectedDate: Date }) {
-  const from = startOfDay(selectedDate);
-  const to = endOfDay(selectedDate);
+  const dateStr = getFormattedDate(selectedDate, 'yyyy-MM-dd');
+  const from = new Date(`${dateStr}T00:00:00+09:00`);
+  const to = new Date(`${dateStr}T23:59:59+09:00`);
 
   const { data } = await getClient().query({
     query: GET_DAILY_TILS,

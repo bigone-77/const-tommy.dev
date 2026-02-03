@@ -7,17 +7,20 @@ import { GET_TIL_SUMMARY } from '../page.queries';
 import { TilCalendarClient } from './til-calendar-client';
 
 export async function TilCalendar({ selectedDate }: { selectedDate: Date }) {
+  const nowKst = new Date(
+    new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }),
+  );
+
   const { data } = await getClient().query({
     query: GET_TIL_SUMMARY,
     variables: {
-      fromDate: getFormattedDate(subDays(new Date(), 30), 'yyyy-MM-dd'),
+      fromDate: getFormattedDate(subDays(nowKst, 30), 'yyyy-MM-dd'),
     },
     fetchPolicy: 'no-cache',
     context: { fetchOptions: { cache: 'no-store' } },
   });
 
   const tilCounts: Record<string, number> = {};
-
   const kstFormatter = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Asia/Seoul',
     year: 'numeric',
@@ -29,7 +32,6 @@ export async function TilCalendar({ selectedDate }: { selectedDate: Date }) {
     const d = /^\d+$/.test(String(til.createdAt))
       ? new Date(Number(til.createdAt))
       : new Date(til.createdAt);
-
     if (!isNaN(d.getTime())) {
       const key = kstFormatter.format(d);
       tilCounts[key] = (tilCounts[key] || 0) + 1;
