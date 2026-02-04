@@ -16,6 +16,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 type Documents = {
     "\n  # 🟢 String! 대신 ID!를 사용해야 합니다.\n  query GetSeriesNav($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      posts {\n        id\n        title\n      }\n    }\n  }\n": typeof types.GetSeriesNavDocument,
     "\n  query GetPosts {\n    allPosts {\n      id\n      title\n      content\n      thumbnail\n      tags\n      createdAt\n      viewCount\n      readingTime\n      author {\n        username\n      }\n    }\n  }\n": typeof types.GetPostsDocument,
+    "\n  query GetOnlyTags {\n    allPosts {\n      tags\n    }\n  }\n": typeof types.GetOnlyTagsDocument,
     "\n  query GetSeriesDetail($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      thumbnail\n      posts {\n        id\n        title\n        content\n        thumbnail\n        tags\n        createdAt\n        viewCount\n        readingTime\n        author {\n          username\n        }\n      }\n    }\n  }\n": typeof types.GetSeriesDetailDocument,
     "\n  query GetSeriesList {\n    allSeries {\n      id\n      title\n      thumbnail\n      createdAt\n      posts {\n        id\n      }\n    }\n  }\n": typeof types.GetSeriesListDocument,
     "\n  query GetProjects($isFeatured: Boolean, $status: ProjectStatus, $take: Int) {\n    allProjects(isFeatured: $isFeatured, status: $status, take: $take) {\n      id\n      title\n      description\n      thumbnail\n      techStack\n      techHighlights\n      period\n      status\n      isFeatured\n      githubUrl\n      liveUrl\n      createdAt\n    }\n  }\n": typeof types.GetProjectsDocument,
@@ -26,6 +27,7 @@ type Documents = {
 const documents: Documents = {
     "\n  # 🟢 String! 대신 ID!를 사용해야 합니다.\n  query GetSeriesNav($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      posts {\n        id\n        title\n      }\n    }\n  }\n": types.GetSeriesNavDocument,
     "\n  query GetPosts {\n    allPosts {\n      id\n      title\n      content\n      thumbnail\n      tags\n      createdAt\n      viewCount\n      readingTime\n      author {\n        username\n      }\n    }\n  }\n": types.GetPostsDocument,
+    "\n  query GetOnlyTags {\n    allPosts {\n      tags\n    }\n  }\n": types.GetOnlyTagsDocument,
     "\n  query GetSeriesDetail($id: ID!) {\n    series(id: $id) {\n      id\n      title\n      thumbnail\n      posts {\n        id\n        title\n        content\n        thumbnail\n        tags\n        createdAt\n        viewCount\n        readingTime\n        author {\n          username\n        }\n      }\n    }\n  }\n": types.GetSeriesDetailDocument,
     "\n  query GetSeriesList {\n    allSeries {\n      id\n      title\n      thumbnail\n      createdAt\n      posts {\n        id\n      }\n    }\n  }\n": types.GetSeriesListDocument,
     "\n  query GetProjects($isFeatured: Boolean, $status: ProjectStatus, $take: Int) {\n    allProjects(isFeatured: $isFeatured, status: $status, take: $take) {\n      id\n      title\n      description\n      thumbnail\n      techStack\n      techHighlights\n      period\n      status\n      isFeatured\n      githubUrl\n      liveUrl\n      createdAt\n    }\n  }\n": types.GetProjectsDocument,
@@ -56,6 +58,10 @@ export function graphql(source: "\n  # 🟢 String! 대신 ID!를 사용해야 �
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query GetPosts {\n    allPosts {\n      id\n      title\n      content\n      thumbnail\n      tags\n      createdAt\n      viewCount\n      readingTime\n      author {\n        username\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetPosts {\n    allPosts {\n      id\n      title\n      content\n      thumbnail\n      tags\n      createdAt\n      viewCount\n      readingTime\n      author {\n        username\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query GetOnlyTags {\n    allPosts {\n      tags\n    }\n  }\n"): (typeof documents)["\n  query GetOnlyTags {\n    allPosts {\n      tags\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

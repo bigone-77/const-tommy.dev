@@ -6,28 +6,26 @@ import { cn, getFormattedDate, getNowKst } from '@/lib/utils';
 import { GET_TIL_SUMMARY } from '../page.queries';
 
 export async function TilChart() {
-  const nowKst = getNowKst();
+  const now = getNowKst();
 
   const { data } = await getClient().query({
     query: GET_TIL_SUMMARY,
     variables: {
-      fromDate: getFormattedDate(subDays(nowKst, 6), 'yyyy-MM-dd'),
+      fromDate: getFormattedDate(subDays(now, 6), 'yyyy-MM-dd'),
     },
     fetchPolicy: 'no-cache',
     context: { fetchOptions: { cache: 'no-store' } },
   });
 
   const tils = data?.allTils ?? [];
-  const last7Days = Array.from({ length: 7 }, (_, i) => subDays(nowKst, 6 - i));
+  const last7Days = Array.from({ length: 7 }, (_, i) => subDays(now, 6 - i));
 
   const chartData = last7Days.map((day) => {
     const dayKey = getFormattedDate(day, 'yyyy-MM-dd');
-    const count = tils.filter((til: any) => {
-      const d = /^\d+$/.test(String(til.createdAt))
-        ? new Date(Number(til.createdAt))
-        : new Date(til.createdAt);
-      return getFormattedDate(d, 'yyyy-MM-dd') === dayKey;
-    }).length;
+
+    const count = tils.filter(
+      (til: any) => getFormattedDate(til.createdAt, 'yyyy-MM-dd') === dayKey,
+    ).length;
 
     return {
       label: getFormattedDate(day, 'MM.dd'),
@@ -35,6 +33,7 @@ export async function TilChart() {
       count,
     };
   });
+
   return (
     <div className='bg-card border-border rounded-xl border p-6 shadow-sm'>
       <div className='mb-6 flex items-end justify-between'>

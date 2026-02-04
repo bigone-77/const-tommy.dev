@@ -17,3 +17,11 @@ export const GET_POSTS = graphql(`
     }
   }
 `);
+
+export const GET_ONLY_TAGS = graphql(`
+  query GetOnlyTags {
+    allPosts {
+      tags
+    }
+  }
+`);

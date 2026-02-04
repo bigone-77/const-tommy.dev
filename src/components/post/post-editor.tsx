@@ -4,13 +4,13 @@ import { useRef } from 'react';
 import { Controller, useWatch } from 'react-hook-form';
 
 import { EditorToolbar } from '@/components/editor/editor-toolbar';
-import { TagInput } from '@/components/editor/tag-input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { TIL_TEMPLATES, TITLE_SUFFIXES } from '@/constants/til-templates';
 import { cn, getFormattedDate } from '@/lib/utils';
 
 import { SeriesSelector } from '../editor/series-selector';
+import { TagSelector } from '../editor/tag-selector';
 
 export function PostEditor({
   mode,
@@ -27,7 +27,6 @@ export function PostEditor({
   const watchedTags = useWatch({ control, name: 'tags', defaultValue: [] });
   const contentValue = useWatch({ control, name: 'content', defaultValue: '' });
 
-  // TIL 전용 태그 클릭 핸들러
   const handleTilTagClick = (
     tag: string,
     fieldOnChange: (val: string[]) => void,
@@ -83,7 +82,6 @@ export function PostEditor({
 
   return (
     <div className='bg-background relative flex h-full flex-col space-y-6 overflow-y-auto p-10'>
-      {/* 제목 영역 */}
       <div
         className={cn(
           'grid text-4xl leading-[1.4] font-bold tracking-tight',
@@ -103,21 +101,16 @@ export function PostEditor({
         />
       </div>
 
-      {/* 시리즈 선택 영역 */}
+      {/* 🟢 블로그 모드일 때만 시리즈와 자동 완성 태그 노출 */}
       {mode === 'blog' && (
-        <SeriesSelector control={control} setValue={setValue} />
+        <div className='space-y-5 border-y border-dashed py-6'>
+          <SeriesSelector control={control} setValue={setValue} />
+          <TagSelector control={control} />
+        </div>
       )}
 
-      {/* 태그 영역 */}
-      {mode === 'blog' ? (
-        <Controller
-          control={control}
-          name='tags'
-          render={({ field }) => (
-            <TagInput value={field.value} onChange={field.onChange} />
-          )}
-        />
-      ) : (
+      {/* 🟡 TIL 모드일 때는 기존의 버튼형 태그 노출 */}
+      {mode === 'til' && (
         <Controller
           control={control}
           name='tags'
@@ -145,7 +138,6 @@ export function PostEditor({
           )}
         />
       )}
-
       {/* 에디터 툴바 */}
       <EditorToolbar
         textareaRef={textareaRef}
