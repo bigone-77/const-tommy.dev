@@ -35,6 +35,7 @@ export function BlogCard({
             alt={title}
             fill
             className='transition-transform duration-500 group-hover:scale-105'
+            imageClassName='object-cover'
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           />
           {tags && tags.length > 0 && (
