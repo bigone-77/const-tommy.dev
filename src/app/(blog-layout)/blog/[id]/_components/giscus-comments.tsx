@@ -9,8 +9,8 @@ export function GiscusComments() {
 
   return (
     <Giscus
-      repo='bigone-77/tommy-tech-blog'
-      repoId='R_kgDOQ3wkhw'
+      repo='bigone-77/const-tommy.dev'
+      repoId='R_kgDOQ3wkhw"'
       category='comments'
       categoryId='DIC_kwDOQ3wkh84C1Sxf'
       mapping='pathname'
