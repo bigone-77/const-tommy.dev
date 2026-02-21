@@ -15,6 +15,7 @@ export function SummarySection() {
     <section id='summary' className='scroll-mt-32'>
       <BlurFade delay={0.1} inView>
         <div className='flex flex-col items-center gap-10 md:flex-row md:items-start md:gap-12 lg:gap-16'>
+          {/* 프로필 이미지 영역 (기본 동일) */}
           <div className='group bg-muted/30 relative aspect-[3/4] w-44 shrink-0 overflow-hidden rounded-[2.5rem] border p-1 shadow-sm transition-all duration-500 hover:shadow-lg md:w-40 lg:w-48'>
             <div className='relative h-full w-full overflow-hidden rounded-[calc(2.5rem-4px)]'>
               <AppImage
@@ -42,6 +43,7 @@ export function SummarySection() {
                 </Badge>
               </div>
 
+              {/* 연락처 영역 (기본 동일) */}
               <div className='flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-start'>
                 <a
                   href='mailto:taeil012@gmail.com'
@@ -65,11 +67,12 @@ export function SummarySection() {
             </div>
 
             <PTypography className='text-muted-foreground text-base leading-relaxed break-keep md:text-base md:leading-relaxed lg:text-lg lg:leading-loose'>
-              복잡한 비즈니스 요구사항을{' '}
+              수만 건의 데이터를 다루는{' '}
               <span className='text-foreground font-bold'>
-                유연하고 정갈한 코드
+                대규모 데이터 그리드 최적화
               </span>
-              로 구현합니다.
+              부터 실시간 인터랙티브 로직까지, 비즈니스의 복잡도를 정교한
+              아키텍처로 구현합니다.{' '}
               <span className='mx-1 inline-block'>
                 <Highlighter
                   action='underline'
@@ -78,16 +81,18 @@ export function SummarySection() {
                   animationDuration={1000}
                 >
                   <span className='text-foreground font-bold'>
-                    문제를 마주하고 해결하는 모든 과정을 기록으로 남기며
+                    BFF 구조 설계를 통해 복잡한 요구사항을 유연한 데이터
+                    인터페이스로 전환하며
                   </span>
                 </Highlighter>
               </span>
-              , 시스템의{' '}
+              , 문제를 마주하고 해결하는 모든 과정을 기록하며 시스템의{' '}
               <span className='text-foreground font-bold'>
                 지속 가능한 성장
               </span>
-              과 사용자 경험의 깊이를 고민합니다.
+              을 지향합니다.
             </PTypography>
+
             <div className='flex justify-center md:justify-start'>
               <PrintableResume />
             </div>

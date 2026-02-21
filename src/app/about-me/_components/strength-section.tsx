@@ -34,7 +34,7 @@ import {
 import { Highlighter } from '@/components/ui/highlighter';
 import { H2Typography, PTypography } from '@/components/ui/typography';
 
-// 📱 화면 크기를 감지하는 커스텀 훅
+// 📱 반응형 대응을 위한 미디어 쿼리 훅
 function useMediaQuery(query: string) {
   const [value, setValue] = useState(false);
   useEffect(() => {
@@ -47,7 +47,7 @@ function useMediaQuery(query: string) {
   return value;
 }
 
-// 📦 공통 상세 콘텐츠 레이아웃
+// 📦 상세 보기 내부 콘텐츠
 function ContentInner({ s }: { s: any }) {
   return (
     <div className='space-y-8 py-6'>
@@ -115,7 +115,7 @@ function StrengthCard({ s, i }: { s: any; i: number }) {
       </div>
       <div className='space-y-3 text-left'>
         <h3 className='text-lg font-extrabold tracking-tight'>{s.title}</h3>
-        <p className='text-muted-foreground text-sm leading-relaxed'>
+        <p className='text-muted-foreground text-sm leading-relaxed break-keep'>
           {s.description}
         </p>
       </div>
@@ -168,7 +168,6 @@ function StrengthCard({ s, i }: { s: any; i: number }) {
         </div>
         <DrawerFooter className='px-0 pt-4 pb-8'>
           <DrawerClose asChild>
-            {/* 🚀 닫기 버튼: h-12와 rounded-xl로 모바일 터치 최적화 */}
             <Button
               variant='outline'
               className='h-12 w-full rounded-xl font-bold'
@@ -184,50 +183,51 @@ function StrengthCard({ s, i }: { s: any; i: number }) {
 
 export function StrengthSection() {
   const PRIMARY_HEX = '#10b981';
+
   const strengths = [
     {
-      title: 'Maintainable Architecture',
+      title: '지속 가능한 구조와 개발 표준화',
       tag: 'Engineering',
       icon: <Code2 className='text-primary size-6' />,
       description:
-        "당장의 기능 구현보다 '시스템의 수명'에 집착합니다. 복합적인 비즈니스 로직을 견고한 타입 시스템으로 설계합니다.",
+        '단순한 기능 구현을 넘어, 팀 전체가 런타임 에러 없이 협업할 수 있는 정교한 타입 시스템과 표준화된 아키텍처를 설계합니다.',
       details: {
         challenge:
-          '환경공단 프로젝트 당시 50개 이상의 복잡한 데이터 그리드를 관리해야 했습니다. 표준 인터페이스 부재로 유지보수 비용이 기하급수적으로 늘어나는 상황이었습니다.',
+          '공식 문서가 부족한 라이브러리 환경이나 폐쇄망 개발 시, 파편화된 코드 스타일과 타입 부재로 인해 기술 부채가 급격히 쌓이는 문제를 겪었습니다.',
         approach:
-          'IBSheet의 모든 메서드를 TypeScript로 래핑하는 자체 타입 시스템을 구축했습니다. 이를 통해 런타임 에러를 사전에 차단하는 선언적 개발 환경을 조성했습니다.',
+          'IBSheet8 전면 타입화(.d.ts)를 통해 안정성을 확보하고, FSD 아키텍처 도입 및 PR/Commit 컨벤션을 수립하여 협업 효율을 극대화했습니다.',
         result:
-          '리그레션 버그가 현저히 감소했으며, 동료 개발자들의 온보딩 속도가 평균 2주에서 3일로 단축되는 성과를 거두었습니다.',
+          '코드 리뷰 비용을 획기적으로 낮췄으며, 확장성 있는 구조 덕분에 신규 인원 투입 시 실무 적응 기간을 대폭 단축하는 기반을 마련했습니다.',
       },
     },
     {
-      title: 'Performance & UX Obsession',
+      title: '데이터 가공 및 런타임 성능 최적화',
       tag: 'Optimization',
       icon: <Zap className='size-6 text-yellow-500' />,
       description:
-        '대용량 데이터를 다루며 렌더링 병목 지점을 파악하고 최적화합니다. 인터랙션과 성능 사이의 균형을 찾는 과정을 즐깁니다.',
+        '수만 건의 그리드 데이터부터 실시간 비전 AI 좌표까지, 브라우저 환경에서 발생하는 성능 병목을 수학적 로직으로 해결합니다.',
       details: {
         challenge:
-          '수만 건의 실시간 데이터 렌더링 시 브라우저 메인 스레드 차단으로 인해 사용자 스크롤이 끊기는 UX 저하 현상이 발생했습니다.',
+          '대용량 데이터 렌더링 시 발생하는 메인 스레드 점유와 실시간 AI 추론 과정에서의 CPU 부하로 인한 인터랙션 끊김 현상을 마주했습니다.',
         approach:
-          '가상 스크롤링 기법을 적용하고 복잡한 연산을 웹 워커로 분리했습니다. 또한 정교한 메모이제이션으로 불필요한 리렌더링을 차단했습니다.',
+          '프레임 쓰로틀링(Throttling) 기법을 도입하고, atan2와 같은 기하학적 연산 로직을 최적화하여 불필요한 리렌더링과 연산을 차단했습니다.',
         result:
-          '초기 로딩 속도를 60% 개선하고 프레임 드랍 현상을 완전히 해결하여 매끄러운 인터랙션을 구현했습니다.',
+          '저사양 기기에서도 60fps 수준의 매끄러운 UX를 구현했으며, 복잡한 비즈니스 데이터 처리에 최적화된 프론트엔드 환경을 구축했습니다.',
       },
     },
     {
-      title: 'Standardization & DX',
-      tag: 'Collaboration',
+      title: '경계를 두지 않는 능동적 문제 해결',
+      tag: 'Problem Solving',
       icon: <LayoutTemplate className='size-6 text-blue-500' />,
       description:
-        '반복되는 UI 패턴을 컴포넌트화하여 팀의 효율을 높입니다. 기술 컨벤션 수립을 통해 소통의 비용을 낮추는 것을 좋아합니다.',
+        '프론트엔드 개발에만 국한되지 않고 리버스 프록시 설정이나 협업용 시각화 도구 제작 등 비즈니스 가치를 위해 인프라까지 다룹니다.',
       details: {
         challenge:
-          '프로젝트 규모 확장 시 중복 UI 코드가 산재하고 스타일링 방식이 파편화되어 디자인 일관성 유지가 어려웠습니다.',
+          '고객사 현장의 인프라 제약(CORS)이나 150개 이상의 컬럼을 다뤄야 하는 백엔드 협업 과정에서 비효율적인 소통이 반복되었습니다.',
         approach:
-          '공통 UI 컴포넌트 라이브러리를 구축하고 ESLint/Prettier 등 자동화 도구와 결합한 사내 기술 컨벤션을 주도적으로 수립했습니다.',
+          'WebtoB 리버스 프록시 설정으로 인프라 이슈를 해결하고, 개발 서버용 JSON Viewer를 제작하여 데이터 정합성을 실시간으로 시각화했습니다.',
         result:
-          'UI 개발 시간을 40% 절감했으며, 코드 리뷰 시 스타일 논쟁을 줄이고 비즈니스 로직에 집중할 수 있는 환경을 만들었습니다.',
+          '기술적 허들을 정면으로 돌파하며 서비스 가용성을 확보했고, 협업 도구 제작을 통해 팀 전체의 소통 비용을 획기적으로 개선했습니다.',
       },
     },
   ];
@@ -238,10 +238,10 @@ export function StrengthSection() {
         <div className='space-y-12'>
           <div className='space-y-2 text-center md:text-left'>
             <H2Typography className='border-none pb-0'>
-              🛡️ Technical Strength
+              🛡️ 기술적 강점
             </H2Typography>
-            <PTypography className='text-muted-foreground mt-0 max-w-2xl break-keep'>
-              도구에 매몰되지 않고 본질에 집중하며 얻은{' '}
+            <PTypography className='text-muted-foreground mt-0 max-w-2xl leading-relaxed break-keep'>
+              도구의 사용법에 매몰되지 않고,{' '}
               <span className='inline-block'>
                 <Highlighter
                   action='underline'
@@ -249,15 +249,15 @@ export function StrengthSection() {
                   strokeWidth={2}
                   animationDuration={1000}
                 >
-                  <span className='text-foreground text-sm font-bold md:text-base'>
-                    실무적 해결 역량
+                  <span className='text-foreground font-bold'>
+                    엔지니어링의 본질적인 문제 해결
                   </span>
                 </Highlighter>
               </span>
-              입니다. 카드를 클릭해 상세 내용을 확인해보세요.
+              에 집중하며 얻은 실무적 역량입니다.
             </PTypography>
           </div>
-          <div className='grid gap-6 md:grid-cols-3'>
+          <div className='grid gap-8 md:grid-cols-3'>
             {strengths.map((s, i) => (
               <StrengthCard key={i} s={s} i={i} />
             ))}
