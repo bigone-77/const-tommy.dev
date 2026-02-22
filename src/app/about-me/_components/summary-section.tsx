@@ -12,7 +12,7 @@ export function SummarySection() {
     <section id='summary' className='scroll-mt-32'>
       <BlurFade delay={0.1} inView>
         <div className='flex flex-col items-center gap-10 md:flex-row md:items-start md:gap-12 lg:gap-16'>
-          {/* 프로필 이미지 영역 (기본 동일) */}
+          {/* 프로필 이미지 영역 (기존 동일) */}
           <div className='group bg-muted/30 relative aspect-[3/4] w-44 shrink-0 overflow-hidden rounded-[2.5rem] border p-1 shadow-sm transition-all duration-500 hover:shadow-lg md:w-40 lg:w-48'>
             <div className='relative h-full w-full overflow-hidden rounded-[calc(2.5rem-4px)]'>
               <AppImage
@@ -40,7 +40,7 @@ export function SummarySection() {
                 </Badge>
               </div>
 
-              {/* 연락처 영역 (기본 동일) */}
+              {/* 연락처 영역 (기존 동일) */}
               <div className='flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-start'>
                 <a
                   href='mailto:taeil012@gmail.com'
@@ -64,23 +64,20 @@ export function SummarySection() {
             </div>
 
             <PTypography className='text-muted-foreground text-base leading-relaxed break-keep md:text-base md:leading-relaxed lg:text-lg lg:leading-loose'>
-              수만 건의 데이터를 다루는{' '}
+              150개 이상의 컬럼이 포함된 그리드처럼{' '}
               <span className='text-foreground font-bold'>
-                대규모 데이터 그리드 최적화
+                데이터 복잡도가 높은 화면을 안정적으로 구현
               </span>
-              부터 실시간 인터랙티브 로직까지, 비즈니스의 복잡도를 정교한
-              아키텍처로 구현합니다.{' '}
-              <span className='mx-1 inline-block'>
-                <span className='text-foreground font-bold'>
-                  BFF 구조 설계를 통해 복잡한 요구사항을 유연한 데이터
-                  인터페이스로 전환하며
-                </span>
+              하는 과정에 집중합니다. <br className='hidden lg:block' />
+              <span className='text-foreground font-bold'>
+                사업비 24억 원 규모의 엔터프라이즈급 차세대 시스템 구축
               </span>
-              , 문제를 마주하고 해결하는 모든 과정을 기록하며 시스템의{' '}
+              에 참여하여, 초기 아키텍처 설계부터 단독 유지보수까지 전 과정을
+              책임지며 시스템의{' '}
               <span className='text-foreground font-bold'>
                 지속 가능한 성장
               </span>
-              을 지향합니다.
+              을 위한 기술적 대안을 고민합니다.
             </PTypography>
 
             <div className='flex justify-center md:justify-start'>
