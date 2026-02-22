@@ -6,12 +6,11 @@ import { Button } from '@/components/ui/button';
 
 export const PrintableResume = () => {
   const handleDownloadPDF = () => {
-    const fileUrl = '/신태일이력서_260223.pdf';
+    const fileUrl = '/resume_tommy.pdf';
 
     const link = document.createElement('a');
     link.href = fileUrl;
 
-    // 다운로드될 파일명 설정
     link.download = '프론트엔드_엔지니어_신태일_이력서.pdf';
 
     document.body.appendChild(link);
