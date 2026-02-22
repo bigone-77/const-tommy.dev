@@ -31,7 +31,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer';
-import { Highlighter } from '@/components/ui/highlighter';
 import { H2Typography, PTypography } from '@/components/ui/typography';
 
 // 📱 반응형 대응을 위한 미디어 쿼리 훅
@@ -182,8 +181,6 @@ function StrengthCard({ s, i }: { s: any; i: number }) {
 }
 
 export function StrengthSection() {
-  const PRIMARY_HEX = '#10b981';
-
   const strengths = [
     {
       title: '지속 가능한 구조와 개발 표준화',
@@ -243,16 +240,9 @@ export function StrengthSection() {
             <PTypography className='text-muted-foreground mt-0 max-w-2xl leading-relaxed break-keep'>
               도구의 사용법에 매몰되지 않고,{' '}
               <span className='inline-block'>
-                <Highlighter
-                  action='underline'
-                  color={PRIMARY_HEX}
-                  strokeWidth={2}
-                  animationDuration={1000}
-                >
-                  <span className='text-foreground font-bold'>
-                    엔지니어링의 본질적인 문제 해결
-                  </span>
-                </Highlighter>
+                <span className='text-foreground font-bold'>
+                  엔지니어링의 본질적인 문제 해결
+                </span>
               </span>
               에 집중하며 얻은 실무적 역량입니다.
             </PTypography>

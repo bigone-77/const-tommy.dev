@@ -3,14 +3,11 @@ import { Github, Mail } from 'lucide-react';
 import { AppImage } from '@/components/app-image';
 import { Badge } from '@/components/ui/badge';
 import { BlurFade } from '@/components/ui/blur-fade';
-import { Highlighter } from '@/components/ui/highlighter';
 import { H1Typography, PTypography } from '@/components/ui/typography';
 
 import { PrintableResume } from './printable-resume';
 
 export function SummarySection() {
-  const PRIMARY_HEX = '#10b981';
-
   return (
     <section id='summary' className='scroll-mt-32'>
       <BlurFade delay={0.1} inView>
@@ -74,17 +71,10 @@ export function SummarySection() {
               부터 실시간 인터랙티브 로직까지, 비즈니스의 복잡도를 정교한
               아키텍처로 구현합니다.{' '}
               <span className='mx-1 inline-block'>
-                <Highlighter
-                  action='underline'
-                  color={PRIMARY_HEX}
-                  strokeWidth={2}
-                  animationDuration={1000}
-                >
-                  <span className='text-foreground font-bold'>
-                    BFF 구조 설계를 통해 복잡한 요구사항을 유연한 데이터
-                    인터페이스로 전환하며
-                  </span>
-                </Highlighter>
+                <span className='text-foreground font-bold'>
+                  BFF 구조 설계를 통해 복잡한 요구사항을 유연한 데이터
+                  인터페이스로 전환하며
+                </span>
               </span>
               , 문제를 마주하고 해결하는 모든 과정을 기록하며 시스템의{' '}
               <span className='text-foreground font-bold'>

@@ -37,7 +37,7 @@ export function CareerSection() {
                 </div>
               </div>
               <SmallTypography className='text-muted-foreground shrink-0 font-mono uppercase'>
-                2024.12 — 2026.01
+                2024.12 — 2025.12
               </SmallTypography>
             </div>
 
@@ -122,7 +122,8 @@ export function CareerSection() {
                     'TypeScript',
                     'IBSheet8',
                     'WebtoB',
-                    'Reverse Proxy',
+                    'PKI Authentication',
+                    'i18n',
                   ].map((tech) => (
                     <Badge
                       key={tech}

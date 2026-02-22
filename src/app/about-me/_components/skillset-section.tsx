@@ -5,7 +5,6 @@ import { useMemo, useState } from 'react';
 import { Code2, Cpu, Database, Globe } from 'lucide-react';
 
 import { BlurFade } from '@/components/ui/blur-fade';
-import { Highlighter } from '@/components/ui/highlighter';
 import { IconCloud } from '@/components/ui/icon-cloud';
 import { H2Typography, PTypography } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
@@ -101,7 +100,6 @@ const ALL_SLUGS = Array.from(
 );
 
 export function SkillsetSection() {
-  const PRIMARY_HEX = '#10b981';
   const [activeLayer, setActiveLayer] = useState<number | null>(null);
 
   const images = useMemo(() => {
@@ -129,16 +127,9 @@ export function SkillsetSection() {
             <PTypography className='text-muted-foreground mt-0 max-w-3xl break-keep'>
               단순한 도구의 나열보다{' '}
               <span className='inline-block'>
-                <Highlighter
-                  action='underline'
-                  color={PRIMARY_HEX}
-                  strokeWidth={2}
-                  animationDuration={1000}
-                >
-                  <span className='text-foreground font-bold'>
-                    각 기술 계층의 유기적인 결합
-                  </span>
-                </Highlighter>
+                <span className='text-foreground font-bold'>
+                  각 기술 계층의 유기적인 결합
+                </span>
               </span>
               을 통해 문제를 해결합니다. 레이어를 클릭해 기술 구성을
               확인해보세요.
@@ -154,11 +145,6 @@ export function SkillsetSection() {
               >
                 <IconCloud images={images} />
               </div>
-              {!activeLayer && (
-                <div className='text-muted-foreground/40 absolute bottom-4 animate-pulse font-mono text-[10px] tracking-widest'>
-                  TAP A LAYER TO FILTER
-                </div>
-              )}
             </div>
 
             {/* 📑 Right: Interactive Layer Cards */}
@@ -234,24 +220,6 @@ export function SkillsetSection() {
                   </div>
                 </div>
               ))}
-
-              {/* Bottom Metadata */}
-              <div className='flex flex-wrap gap-2 border-t border-dashed pt-6'>
-                {[
-                  'Turborepo',
-                  'BFF Design',
-                  'FSD Architecture',
-                  'MSW',
-                  'GraphQL',
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className='bg-muted/40 text-muted-foreground/70 border-border/50 rounded-md border px-2 py-0.5 text-[10px] font-bold'
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         </div>

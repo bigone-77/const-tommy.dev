@@ -1,7 +1,6 @@
 import { ProjectCard } from '@/app/project/_components/project-card';
 import { GET_PROJECTS } from '@/app/project/page.queries';
 import { BlurFade } from '@/components/ui/blur-fade';
-import { Highlighter } from '@/components/ui/highlighter';
 import { H2Typography, PTypography } from '@/components/ui/typography';
 import { getClient } from '@/lib/apollo-client';
 
@@ -29,20 +28,13 @@ export async function ProjectsSection() {
                 🚀 Projects
               </H2Typography>
               <PTypography className='text-muted-foreground mt-0 max-w-2xl break-keep'>
-                기술적 한계를 극복하고{' '}
+                주어진 제약 사항을 해결하고{' '}
                 <span className='inline-block'>
-                  <Highlighter
-                    action='underline'
-                    color={PRIMARY_HEX}
-                    strokeWidth={2}
-                    animationDuration={1000}
-                  >
-                    <span className='text-foreground font-bold'>
-                      더 나은 가치를 만들기 위해 매진한
-                    </span>
-                  </Highlighter>
+                  <span className='text-foreground font-bold'>
+                    안정적인 시스템을 설계하기 위해 고민한
+                  </span>
                 </span>{' '}
-                전체 프로젝트 기록입니다.
+                기록입니다.
               </PTypography>
             </div>
 
@@ -66,8 +58,6 @@ export async function ProjectsSection() {
               </BlurFade>
             ))}
           </div>
-
-          {/* 모든 프로젝트를 보여주므로 '전체 기록 탐색하기' 버튼은 제거했습니다. */}
         </div>
       </BlurFade>
     </section>
