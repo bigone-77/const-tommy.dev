@@ -5,6 +5,7 @@ import { Separator } from '@/components/ui/separator';
 import { BreadcrumbSetter } from '@/lib/breadcrumb-store';
 
 import { CareerSection } from './_components/career-section';
+import { ContactSection } from './_components/contact-section';
 import { EducationSection } from './_components/education-section';
 import { ProjectsSection } from './_components/projects-section';
 import { SkillsetSection } from './_components/skillset-section';
@@ -21,6 +22,7 @@ export default function AboutMePage() {
     { id: 'projects', text: '🚀 Projects', level: 2 },
     { id: 'skills', text: '🛠️ Skillset', level: 2 },
     { id: 'education', text: '🎓 Education & Awards', level: 2 },
+    { id: 'contact', text: '✉️ Contact', level: 2 }, // 목차 추가
   ];
 
   return (
@@ -49,6 +51,8 @@ export default function AboutMePage() {
         <SkillsetSection />
         <Separator className='opacity-50' />
         <EducationSection />
+        <Separator className='opacity-50' />
+        <ContactSection />
       </div>
     </AppLayout>
   );

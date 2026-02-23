@@ -115,14 +115,13 @@ const AWARDS_DATA = [
 export function EducationSection() {
   return (
     <section id='education' className='scroll-mt-32'>
-      <BlurFade delay={0.6} inView>
+      <BlurFade delay={0.1} inView>
         <div className='space-y-12'>
           <H2Typography className='border-none pb-0 text-left'>
             🎓 Education & Awards
           </H2Typography>
 
           <div className='grid gap-12 md:grid-cols-2'>
-            {/* --- Education & Activity 섹션 --- */}
             <div className='space-y-8'>
               <div className='flex items-center gap-3'>
                 <div className='bg-primary/10 rounded-lg p-2'>

@@ -5,8 +5,6 @@ import { H2Typography, PTypography } from '@/components/ui/typography';
 import { getClient } from '@/lib/apollo-client';
 
 export async function ProjectsSection() {
-  const PRIMARY_HEX = '#10b981';
-
   const { data } = await getClient().query({
     query: GET_PROJECTS,
     variables: { isFeatured: null, status: null, take: null },
@@ -19,7 +17,7 @@ export async function ProjectsSection() {
 
   return (
     <section id='projects' className='scroll-mt-32'>
-      <BlurFade delay={0.4} inView>
+      <BlurFade delay={0.1} inView>
         <div className='space-y-12'>
           {/* 헤더 섹션 */}
           <div className='flex flex-col items-start justify-between gap-4 md:flex-row md:items-end'>

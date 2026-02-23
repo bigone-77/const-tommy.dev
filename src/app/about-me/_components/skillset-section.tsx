@@ -118,7 +118,7 @@ export function SkillsetSection() {
 
   return (
     <section id='skills' className='scroll-mt-32'>
-      <BlurFade delay={0.5} inView>
+      <BlurFade delay={0.1} inView>
         <div className='space-y-12'>
           <div className='space-y-2 text-center md:text-left'>
             <H2Typography className='border-none pb-0'>

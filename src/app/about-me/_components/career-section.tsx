@@ -8,7 +8,7 @@ import { H2Typography, SmallTypography } from '@/components/ui/typography';
 export function CareerSection() {
   return (
     <section id='career' className='scroll-mt-32'>
-      <BlurFade delay={0.2} inView>
+      <BlurFade delay={0.1} inView>
         <div className='space-y-12'>
           <H2Typography className='flex items-center gap-3 border-none pb-0 text-left'>
             💼 Career
