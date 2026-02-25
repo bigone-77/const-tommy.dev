@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -28,6 +29,49 @@ import { GET_PROJECT } from '../page.queries';
 
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+
+  const { data } = await getClient().query<GetProjectQuery>({
+    query: GET_PROJECT,
+    variables: { id },
+    context: { fetchOptions: { cache: 'no-store' } },
+  });
+
+  const project = data?.project;
+
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+    };
+  }
+
+  const { title, description, thumbnail } = project;
+  const ogImage = thumbnail || '/og-image.png';
+
+  return {
+    title: title,
+    description: description,
+    alternates: {
+      canonical: `/project/${id}`,
+    },
+    openGraph: {
+      title: `${title} | const-tommy.dev`,
+      description: description,
+      url: `/project/${id}`,
+      type: 'article',
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${title} 프로젝트 썸네일`,
+        },
+      ],
+    },
+  };
 }
 
 export default async function ProjectDetailPage({ params }: Props) {

@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -30,6 +31,50 @@ import { deletePost } from './page.actions';
 
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const blogSource = await getBlogSource();
+  const page = blogSource.getPage([id]);
+
+  if (!page) {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+
+  const { title, tags, thumbnail } = page.data;
+
+  const ogImage = thumbnail || '/og-image.png';
+
+  return {
+    title: title,
+    description: `${title} - Tommy의 기술 포스트`,
+    keywords: tags?.join(', '),
+    alternates: {
+      canonical: `/blog/${id}`,
+    },
+    openGraph: {
+      title: `${title} | const-tommy.dev`,
+      description: `${title} - Tommy의 기술 블로그`,
+      url: `/blog/${id}`,
+      locale: 'ko_KR',
+      type: 'article',
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${title} 썸네일`,
+        },
+      ],
+    },
+  };
 }
 
 export default async function Page({ params }: Props) {

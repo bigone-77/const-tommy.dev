@@ -1,5 +1,7 @@
 import { Suspense } from 'react';
 
+import { Metadata } from 'next';
+
 import { FolderCode } from 'lucide-react';
 
 import { AppLayout } from '@/components/app-layout';
@@ -8,6 +10,27 @@ import { H1Typography, LeadTypography } from '@/components/ui/typography';
 
 import { ProjectContent } from './_components/project-content';
 import { ProjectGridSkeleton } from './_components/project-skeletons';
+
+export const metadata: Metadata = {
+  title: 'Project',
+  description: 'Tommy의 프로젝트',
+  alternates: {
+    canonical: '/project',
+  },
+  openGraph: {
+    title: 'Project | const-tommy.dev',
+    description: 'Tommy의 프로젝트',
+    url: '/project',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Tommy Shin 프로젝트',
+      },
+    ],
+  },
+};
 
 export default async function ProjectPage({
   searchParams,

@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import { AppLayout } from '@/components/app-layout';
 import { ReadProgressBar } from '@/components/read-progressbar';
 import { TableOfContents } from '@/components/table-of-contents';
@@ -11,6 +13,27 @@ import { ProjectsSection } from './_components/projects-section';
 import { SkillsetSection } from './_components/skillset-section';
 import { StrengthSection } from './_components/strength-section';
 import { SummarySection } from './_components/summary-section';
+
+export const metadata: Metadata = {
+  title: 'About Me',
+  description: 'Tommy(신태일)의 포트폴리오',
+  alternates: {
+    canonical: '/about-me',
+  },
+  openGraph: {
+    title: 'About Me | const-tommy.dev',
+    description: '프론트엔드 개발자 Tommy의 포트폴리오',
+    url: '/about-me',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Tommy Shin 소개',
+      },
+    ],
+  },
+};
 
 export default function AboutMePage() {
   const title = '소개';

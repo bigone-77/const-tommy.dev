@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -15,6 +16,49 @@ import { GET_SERIES_DETAIL } from './page.queries';
 
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+
+  const { data } = await getClient().query({
+    query: GET_SERIES_DETAIL,
+    variables: { id },
+    fetchPolicy: 'no-cache',
+  });
+
+  const series = data?.series;
+
+  if (!series) {
+    return {
+      title: 'Series Not Found',
+    };
+  }
+
+  const { title, thumbnail } = series;
+  const ogImage = thumbnail || '/og-image.png';
+
+  return {
+    title: title,
+    description: `[시리즈] ${title} - Tommy의 기술 포스트 시리즈`,
+    alternates: {
+      canonical: `/series/${id}`,
+    },
+    openGraph: {
+      title: `${title} | const-tommy.dev`,
+      description: `[시리즈] ${title} - Tommy의 기술 포스트 시리즈`,
+      url: `/series/${id}`,
+      type: 'website',
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${title} 시리즈 썸네일`,
+        },
+      ],
+    },
+  };
 }
 
 export default async function Page({ params }: Props) {

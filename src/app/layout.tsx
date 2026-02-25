@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { headers } from 'next/headers';
 
+import { GoogleTagManager } from '@next/third-parties/google';
+
 import { AppBreadCrumb } from '@/components/app-breadcrumb';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteTracker } from '@/components/app-site-tracker';
@@ -23,13 +25,26 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://const-tommy.dev'),
   title: {
-    default: 'const-tommy.dev | Front-end Engineering Archive',
+    default: 'const-tommy.dev',
     template: '%s | const-tommy.dev',
   },
   description: '프론트엔드 개발자 Tommy의 개인 기술 아카이브입니다.',
-
+  authors: {
+    name: 'tommy-shin',
+    url: 'https://github.com/bigone-77',
+  },
+  creator: 'tommy-shin',
+  publisher: 'tommy-shin',
+  formatDetection: {
+    email: true,
+    telephone: false,
+    address: false,
+  },
+  metadataBase: new URL('https://const-tommy.dev'),
+  alternates: {
+    canonical: '/',
+  },
   verification: {
     other: {
       'naver-site-verification': '3a702e2d388f0641f86399972cf78345d03730ad',
@@ -37,8 +52,8 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: 'const-tommy.dev | Front-end Engineering Archive',
-    description: '프론트엔드 개발자 Tommy의 본질을 담은 기록들.',
+    title: 'const-tommy.dev',
+    description: '세상에 하나뿐인 Tommy의 기록들.',
     url: 'https://const-tommy.dev',
     siteName: 'const-tommy.dev',
     locale: 'ko_KR',
@@ -90,6 +105,8 @@ export default async function RootLayout({
             </SidebarProvider>
           </ThemeProvider>
         </ApolloProvider>
+
+        <GoogleTagManager gtmId='GTM-5759RQQ7' />
       </body>
     </html>
   );

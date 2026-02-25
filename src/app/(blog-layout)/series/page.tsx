@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import { AppLayout } from '@/components/app-layout';
 import { getClient } from '@/lib/apollo-client';
 import { auth } from '@/lib/auth';
@@ -5,6 +7,19 @@ import { getFormattedDate } from '@/lib/utils';
 
 import { SeriesCard } from './_components/series-card';
 import { GET_SERIES_LIST } from './page.queries';
+
+export const metadata: Metadata = {
+  title: 'Series',
+  description: 'Tommy의 기술 시리즈',
+  alternates: {
+    canonical: '/series',
+  },
+  openGraph: {
+    title: 'Series | const-tommy.dev',
+    description: 'Tommy의 기술 시리즈',
+    url: '/series',
+  },
+};
 
 export default async function SeriesPage() {
   const session = await auth();
