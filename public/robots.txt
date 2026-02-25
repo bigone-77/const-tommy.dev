@@ -1,0 +1,15 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/auth/signin
+Disallow: /blog/write
+Disallow: /blog/edit
+Disallow: /til/write
+Disallow: /til/edit
+
+# Host
+Host: https://const-tommy.dev
+
+# Sitemaps
+Sitemap: https://const-tommy.dev/sitemap.xml
+Sitemap: https://const-tommy.dev/server-sitemap.xml

@@ -23,11 +23,18 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://const-tommy.dev'),
   title: {
     default: 'const-tommy.dev | Front-end Engineering Archive',
     template: '%s | const-tommy.dev',
   },
   description: '프론트엔드 개발자 Tommy의 개인 기술 아카이브입니다.',
+
+  verification: {
+    other: {
+      'naver-site-verification': '3a702e2d388f0641f86399972cf78345d03730ad',
+    },
+  },
 
   openGraph: {
     title: 'const-tommy.dev | Front-end Engineering Archive',

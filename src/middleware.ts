@@ -5,7 +5,7 @@ import authConfig from '../auth.config';
 
 const { auth } = NextAuth(authConfig);
 
-const ADMIN_ROUTES = ['/blog/write', '/blog/edit'];
+const ADMIN_ROUTES = ['/blog/write', '/blog/edit', '/til/write', '/til/edit'];
 
 export default auth(async function middleware(req) {
   const { nextUrl } = req;
