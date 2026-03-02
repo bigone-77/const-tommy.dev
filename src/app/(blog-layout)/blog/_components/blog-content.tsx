@@ -40,7 +40,7 @@ export async function BlogContent({ selectedTag }: { selectedTag: string }) {
           selectedTag={selectedTag}
           tagCounts={tagCounts}
         />
-        <div className='grid grid-cols-1 gap-10 md:gap-y-14 lg:grid-cols-3 lg:gap-x-12'>
+        <div className='grid grid-cols-1 gap-4 md:gap-y-6 lg:grid-cols-3 lg:gap-x-6'>
           {filteredPosts.map((post: any) => (
             <BlogCard
               key={post.id}

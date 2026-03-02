@@ -100,7 +100,7 @@ export default async function HomePage() {
         </section>
 
         <section className='space-y-10'>
-          <div className='flex items-center justify-between border-b pb-5'>
+          <div className='flex items-center justify-between border-b pb-3'>
             <div className='flex items-center gap-2'>
               <BookOpen className='text-primary h-5 w-5' />
               <H2Typography className='border-none pb-0 text-xl font-bold'>
@@ -145,7 +145,7 @@ export default async function HomePage() {
 
         <section className='grid grid-cols-1 gap-16 md:grid-cols-2'>
           <div className='space-y-10'>
-            <div className='flex items-center justify-between border-b pb-5'>
+            <div className='flex items-center justify-between border-b pb-3'>
               <div className='flex items-center gap-2'>
                 <PenTool className='text-primary h-5 w-5' />
                 <H2Typography className='border-none pb-0 text-xl font-bold'>
@@ -178,7 +178,7 @@ export default async function HomePage() {
           </div>
 
           <div className='space-y-10'>
-            <div className='flex items-center justify-between border-b pb-5'>
+            <div className='flex items-center justify-between border-b pb-3'>
               <div className='flex items-center gap-2'>
                 <FolderCode className='text-primary h-5 w-5' />
                 <H2Typography className='border-none pb-0 text-xl font-bold'>

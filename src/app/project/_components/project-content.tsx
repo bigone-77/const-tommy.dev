@@ -31,7 +31,7 @@ export async function ProjectContent({
       : allProjects.filter((p: any) => p.status === selectedStatus);
 
   return (
-    <div className='space-y-10'>
+    <div className='space-y-4'>
       <TagFilter
         tags={filterTabs}
         selectedTag={selectedStatus}

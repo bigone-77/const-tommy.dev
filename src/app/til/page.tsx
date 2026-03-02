@@ -45,7 +45,7 @@ export default async function Page({
       </div>
 
       <div className='relative z-10 space-y-12'>
-        <header className='space-y-4 border-b pb-12'>
+        <header className='space-y-4 pb-12'>
           <div className='flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between md:gap-y-0'>
             <div className='flex items-center gap-x-2'>
               <PenTool
@@ -53,7 +53,7 @@ export default async function Page({
                 strokeWidth={2.5}
                 className='text-primary shrink-0'
               />
-              <H1Typography className='text-start text-5xl font-black tracking-tighter'>
+              <H1Typography className='text-start text-5xl tracking-tighter'>
                 오늘 배운 것
               </H1Typography>
             </div>
@@ -70,8 +70,8 @@ export default async function Page({
               </Button>
             )}
           </div>
-          <LeadTypography className='text-muted-foreground/70'>
-            잊어버리기 싫어서 기록하는 오늘의 날것들. 하나씩 채워가는 중입니다.
+          <LeadTypography className='text-muted-foreground'>
+            오늘 새로 알게 된 것들. 거창하지 않아도 꾸준히 남겨보려 합니다.
           </LeadTypography>
         </header>
 

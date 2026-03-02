@@ -117,7 +117,7 @@ export default async function Page({ params }: Props) {
                   </span>
                 </div>
 
-                <h1 className='text-foreground text-3xl leading-[1.1] font-black tracking-tighter transition-colors md:text-5xl lg:text-6xl'>
+                <h1 className='text-foreground text-3xl leading-[1.1] tracking-tighter transition-colors md:text-5xl lg:text-6xl'>
                   {series.title}
                 </h1>
 

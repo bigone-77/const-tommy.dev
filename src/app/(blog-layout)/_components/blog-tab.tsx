@@ -43,8 +43,7 @@ export function BlogTab({ isAdmin }: { isAdmin?: boolean }) {
                 strokeWidth={2.5}
                 className='text-primary shrink-0'
               />
-              {/* 🟢 무조건 '블로그'로 표시 */}
-              <H1Typography className='text-start text-5xl font-black tracking-tighter'>
+              <H1Typography className='text-start text-5xl tracking-tighter'>
                 블로그
               </H1Typography>
             </div>
@@ -62,15 +61,14 @@ export function BlogTab({ isAdmin }: { isAdmin?: boolean }) {
             )}
           </div>
 
-          {/* 🟢 무조건 블로그 기본 설명으로 표시 */}
-          <LeadTypography className='text-muted-foreground/70'>
+          <LeadTypography className='text-muted-foreground'>
             단순한 지식 습득을 넘어, 최적의 구조와 치밀한 구현을 위해 집요하게
             고민한 흔적들입니다.
           </LeadTypography>
         </div>
 
         <div className='pt-4'>
-          <Tabs value={activeTab} className='w-full'>
+          <Tabs value={activeTab} className='md:w-fit'>
             <TabsList
               variant='line'
               className='w-full justify-start bg-transparent p-0'
@@ -80,7 +78,7 @@ export function BlogTab({ isAdmin }: { isAdmin?: boolean }) {
                 asChild
                 className='data-[state=active]:text-primary text-xl font-bold shadow-none'
               >
-                <Link href='/blog' prefetch={true}>
+                <Link href='/blog' prefetch={true} className='px-10'>
                   글
                 </Link>
               </TabsTrigger>
@@ -89,7 +87,7 @@ export function BlogTab({ isAdmin }: { isAdmin?: boolean }) {
                 asChild
                 className='data-[state=active]:text-primary text-xl font-bold shadow-none'
               >
-                <Link href='/series' prefetch={true}>
+                <Link href='/series' prefetch={true} className='px-10'>
                   시리즈
                 </Link>
               </TabsTrigger>

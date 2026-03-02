@@ -53,7 +53,6 @@ export function ProjectCard({
       />
 
       <Card className='hover:border-primary/40 pointer-events-none relative flex h-full flex-col overflow-hidden py-0 transition-all duration-300 group-hover:shadow-xl'>
-        {/* 1. 썸네일 영역: 가독성 높은 상태 뱃지 배치 */}
         <div
           className={cn(
             'bg-muted relative w-full overflow-hidden border-b transition-all',
@@ -67,31 +66,27 @@ export function ProjectCard({
             imageClassName='object-cover'
             className='transition-transform duration-500'
           />
-          {/* 상태 뱃지 위치 및 크기 최적화 */}
-          <div className='absolute top-4 left-4 z-10'>
-            <span
-              className={cn(
-                'rounded-lg border shadow-sm backdrop-blur-md transition-all select-none',
-                statusStyle.class,
-              )}
-            >
-              {statusStyle.label}
-            </span>
-          </div>
         </div>
 
-        {/* 2. 카드 헤더: 제목 및 설명 가독성 강화 */}
         <CardHeader
           className={cn(
             'flex-1 gap-3', // gap을 늘려 요소 간 여유 확보
-            isFeatured ? 'px-7 pt-7 pb-5' : 'px-5 pt-5 pb-4',
+            isFeatured ? 'px-7 pt-0 pb-5' : 'px-5 pt-0 pb-4',
           )}
         >
+          <span
+            className={cn(
+              'w-fit rounded-lg border shadow-sm backdrop-blur-md transition-all select-none',
+              statusStyle.class,
+            )}
+          >
+            {statusStyle.label}
+          </span>
           <div className='flex items-start justify-between gap-2'>
             <CardTitle
               className={cn(
-                'group-hover:text-primary line-clamp-1 leading-snug font-black tracking-tighter transition-colors',
-                isFeatured ? 'text-2xl' : 'text-lg', // 텍스트 크기 상향
+                'group-hover:text-primary line-clamp-1 leading-snug font-bold tracking-tighter transition-colors',
+                isFeatured ? 'text-2xl' : 'text-lg',
               )}
             >
               {title}
@@ -128,7 +123,7 @@ export function ProjectCard({
               <span
                 key={highlight}
                 className={cn(
-                  'bg-primary/5 text-primary/80 border-primary/20 rounded-md border font-bold shadow-sm',
+                  'bg-primary/5 text-primary/80 border-primary/20 rounded-md border font-bold',
                   isFeatured
                     ? 'px-2.5 py-1 text-[11px]'
                     : 'px-2 py-0.5 text-[10px]',

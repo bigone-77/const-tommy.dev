@@ -44,19 +44,16 @@ export function ContactSection() {
   return (
     <section id='contact' className='scroll-mt-32'>
       <BlurFade delay={0.1} inView>
-        <div className='flex flex-col gap-10'>
+        <div className='flex flex-col gap-6'>
           <H2Typography className='border-none pb-0 text-left'>
             ✉️ CONTACT
           </H2Typography>
 
           <PTypography className='text-muted-foreground w-full text-base leading-relaxed break-keep md:text-base lg:text-lg lg:leading-loose'>
-            저는 여기저기 흩어져 있는 정보를 한데 모아 정리하고 기록하는 일을
-            즐깁니다. 혼자만 알고 있는 지식보다{' '}
-            <span className='text-foreground font-bold'>
-              '나의 지식'과 '당신의 경험'이 만나 팀 네트워킹으로 이어질 때{' '}
-            </span>
-            비로소 진짜 시너지가 난다고 믿습니다. 기술적인 고민을 편하게 나누고
-            함께 성장할 수 있는 동료들을 기다리고 있습니다.
+            흩어져 있는 정보를 정리하고 기록으로 남기는 과정을 즐깁니다. 혼자
+            아는 지식보다 서로의 경험이 맞물려 팀의 실력이 될 때 비로소 일하는
+            재미를 느낍니다. 기술적인 고민을 스스럼없이 나누며 함께 몰입할 수
+            있는 동료를 찾고 있습니다.
           </PTypography>
 
           <div className='bg-card w-full rounded-xl border p-8 shadow-sm md:p-12'>

@@ -53,7 +53,7 @@ export default async function ProjectPage({
         />
       </div>
 
-      <div className='relative z-10 space-y-4 border-b pb-12'>
+      <div className='relative z-10 space-y-10 border-b pb-12'>
         <div className='space-y-4'>
           <div className='flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between md:gap-y-0'>
             <div className='flex items-center gap-x-3'>
@@ -62,15 +62,14 @@ export default async function ProjectPage({
                 strokeWidth={2.5}
                 className='text-primary shrink-0'
               />
-              <H1Typography className='text-start text-5xl font-black tracking-tighter'>
+              <H1Typography className='text-start text-5xl tracking-tighter'>
                 프로젝트
               </H1Typography>
             </div>
           </div>
 
           <LeadTypography className='text-muted-foreground/70'>
-            단순한 지식 습득을 넘어, 최적의 구조와 치밀한 구현을 위해 집요하게
-            고민한 흔적들입니다.
+            지금까지 제가 쌓아온 프로젝트 기록입니다.
           </LeadTypography>
         </div>
 
