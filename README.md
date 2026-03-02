@@ -334,7 +334,7 @@ export const resolvers: Resolvers = {
 </details>
 
 - **무결성 상시 검증**
-  AI와 협업하여 생성된 데이터 로직이 실제 DB 스키마에 올바르게 반영되는지 `pnpm db:studio`를 통해 실시간으로 확인하며 개발했습니다.
+  AI를 활용하여 생성된 데이터 로직이 실제 DB 스키마에 올바르게 반영되는지 `pnpm db:studio`를 통해 실시간으로 확인하며 개발했습니다.
 
 ---
 
