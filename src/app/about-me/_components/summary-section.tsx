@@ -74,24 +74,24 @@ export function SummarySection() {
               <div className='flex flex-col'>
                 {/* 첫 번째 문단 */}
                 <PTypography className='text-muted-foreground text-base leading-relaxed break-keep md:text-base md:leading-relaxed lg:text-lg lg:leading-loose'>
-                  150개 이상의 컬럼이 포함된 그리드처럼{' '}
+                  React 생태계에 대한 이해를 바탕으로, 뛰어난{' '}
                   <span className='text-foreground font-bold'>
-                    데이터 복잡도가 높은 화면을 안정적으로 구현
+                    사용자 경험(UX)은 물론 팀을 위한 개발자 경험(DX)
                   </span>
-                  하는 과정에 집중합니다.
+                  을 깊이 고민하는 프론트엔드 엔지니어입니다.
                 </PTypography>
 
-                {/* 두 번째 문단 */}
                 <PTypography className='text-muted-foreground text-base leading-relaxed break-keep md:text-base md:leading-relaxed lg:text-lg lg:leading-loose'>
+                  복잡한 요구사항 앞에서도 주도적으로 기술적 대안을 모색하며,{' '}
                   <span className='text-foreground font-bold'>
-                    사업비 24억 원 규모의 엔터프라이즈급 차세대 시스템 구축
+                    AI 툴을 적극 활용하여 아이디어를 빠르게 구현해 내는 실행력
                   </span>
-                  에 참여하여, 초기 아키텍처 설계부터 단독 유지보수까지 전
-                  과정을 책임지며 시스템의{' '}
+                  이 저의 강점입니다. 이를 바탕으로 유연한 설계와 안정적인
+                  구현을 이끌며{' '}
                   <span className='text-foreground font-bold'>
-                    지속 가능한 성장
+                    지속 가능한 서비스
                   </span>
-                  을 위한 기술적 대안을 고민합니다.
+                  를 만들어가는 과정을 즐깁니다.
                 </PTypography>
               </div>
 
