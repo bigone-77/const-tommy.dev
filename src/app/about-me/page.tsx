@@ -41,9 +41,9 @@ export default function AboutMePage() {
   const headings = [
     { id: 'summary', text: '👤 Summary', level: 2 },
     { id: 'career', text: '💼 Career', level: 2 },
-    { id: 'strength', text: '🛡️ Technical Strength', level: 2 },
+    { id: 'strength', text: '🛡️ Approach', level: 2 },
     { id: 'projects', text: '🚀 Projects', level: 2 },
-    { id: 'skills', text: '🛠️ Skillset', level: 2 },
+    { id: 'skills', text: '🛠️ SkillSet', level: 2 },
     { id: 'education', text: '🎓 Education & Awards', level: 2 },
     { id: 'contact', text: '✉️ Contact', level: 2 }, // 목차 추가
   ];

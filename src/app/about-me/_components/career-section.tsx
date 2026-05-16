@@ -30,7 +30,7 @@ export function CareerSection() {
                     (주)클라모스
                   </h3>
                   <p className='text-muted-foreground text-xs leading-tight font-medium tracking-wider uppercase'>
-                    Main Frontend Developer / Maintenance Lead
+                    인프라개발팀 / 연구원
                   </p>
                   <p className='text-muted-foreground/80 max-w-[500px] text-[12px] leading-relaxed font-normal break-keep'>
                     공공기관 대상의 대규모 엔터프라이즈 시스템 통합(SI) 전문
@@ -57,13 +57,13 @@ export function CareerSection() {
                       variant='outline'
                       className='border-primary/20 bg-primary/5 text-primary rounded-md px-2 text-[10px] font-bold'
                     >
-                      초기 아키텍처 및 핵심 기능 개발 (6개월)
+                      팀 개발 (6개월)
                     </Badge>
                     <Badge
                       variant='outline'
                       className='border-muted-foreground/20 bg-muted/5 text-muted-foreground rounded-md px-2 text-[10px] font-bold'
                     >
-                      단독 유지보수 및 고도화 전담 (4개월)
+                      단독 운영 (4개월)
                     </Badge>
                   </div>
                 </div>
@@ -71,50 +71,45 @@ export function CareerSection() {
                 <ul className='space-y-6'>
                   <li className='text-muted-foreground text-sm leading-relaxed'>
                     <strong className='text-foreground mb-1 block flex items-center gap-2'>
-                      ✨ 비표준 라이브러리의 React 생명주기 통합 및 상태 동기화
+                      프로젝트 단독 운영 및 고객 대응
                     </strong>
-                    로더 기반으로 동작하는 IBSheet8 인스턴스와 React 간의 상태
-                    불일치 및 렌더링 타이밍 이슈를 해결하기 위해{' '}
-                    <strong>커스텀 훅 기반의 Lifecycle 래퍼를 설계</strong>
-                    했습니다. 시트 객체를 React 상태로 캡슐화하여 중복 렌더링과
-                    데이터 유실을 방지하고, 50여 종의 서식이 현장 배포
-                    환경에서도 동일하게 제어될 수 있는 안정성을 확보했습니다.
+                    6개월 팀 개발 후 4개월 단독 운영으로 전환하여, 추가 기능
+                    개발과 안정화, 배포 전반을 단독 담당했습니다. 운영 기간 동안
+                    고객사와 직접 기술 협의를 진행하며 요구사항을 조율했습니다.
                   </li>
 
                   <li className='text-muted-foreground text-sm leading-relaxed'>
                     <strong className='text-foreground mb-1 block flex items-center gap-2'>
-                      🚀 Zustand 기반 동적 서식 엔진 구현 (50여 종 서식 대응)
+                      비표준 그리드 라이브러리(ibSheet)의 React 통합
                     </strong>
-                    권한, 서식 상태(임시저장/보완/반려 등), 수출입 여부에 따라
-                    실시간으로 변하는{' '}
-                    <strong>50여 가지 인허가 서식 로직을 처리</strong>했습니다.
-                    Zustand를 활용해 분기별로 필요한 컬럼 스키마를 런타임에서
-                    동적으로 주입하는 구조를 설계하여, 대규모 비즈니스
-                    요구사항에도 유연하게 대응 가능한 유지보수 환경을
-                    구축했습니다.
+                    폐쇄망 환경에서 사용해야 했던 ibSheet가 React의
+                    라이프사이클과 어긋나며, 서버 데이터 갱신 시 상태 동기화
+                    불일치로 테이블이 재렌더링되거나 무한 스크롤 threshold 통과
+                    시 데이터 로딩이 끊기는 문제가 있었습니다. 커스텀 훅 기반의
+                    라이프사이클 래퍼를 설계해 발견된 이슈들을 해결하고, React
+                    패턴과 일관되게 사용 가능한 인터페이스로 정리했습니다.
                   </li>
 
                   <li className='text-muted-foreground text-sm leading-relaxed'>
                     <strong className='text-foreground mb-1 block flex items-center gap-2'>
-                      📊 디버깅 리드타임 단축을 위한 실시간 JSON Viewer 개발
+                      반복 서식 대응을 위한 동적 렌더링 구조 설계
                     </strong>
-                    150개 이상의 컬럼 대조 시 발생하는 수동 검증의 비효율을
-                    해결하고자{' '}
-                    <strong>클라이언트 사이드 데이터 시각화 도구를 제작</strong>
-                    했습니다. 요청값의 트리 구조를 직관적으로 확인하게 함으로써
-                    데이터 정합성 오류 포착 시간을 획기적으로 단축하고
-                    백엔드와의 소통 리소스를 절감했습니다.
+                    50여 종의 공공기관 서식을 매번 정적으로 구현하던 작업의
+                    비효율을 줄이기 위해, 스키마를 주입하면 UI가 자동 구성되는
+                    동적 렌더링 구조를 설계했습니다. 신규 서식 추가 시 컴포넌트
+                    작성 없이 스키마 정의만으로 대응 가능하도록 개선했습니다.
                   </li>
 
                   <li className='text-muted-foreground text-sm leading-relaxed'>
                     <strong className='text-foreground mb-1 block flex items-center gap-2'>
-                      🛠️ 현장 네트워크 제약 해결 (WebtoB Reverse Proxy)
+                      폐쇄망 환경에서의 개발 생산성 개선
                     </strong>
-                    보안 정책이 엄격한 현장 배포 환경에서 발생하는 외부 API 통신
-                    장애를 <strong>WebtoB 리버스 프록시 설정</strong>으로
-                    해결했습니다. 프론트엔드 웹 서버를 경유하는 프록시 계층을
-                    직접 구성하여 로컬 환경과 배포 환경 간의 통신 정합성을
-                    확보했습니다.
+                    외부 라이브러리 도입이 제한된 환경에서 디버깅에 필요한 최소
+                    기능의 JSON Viewer를 직접 구현해 팀 내 디버깅 시간 단축에
+                    기여했습니다. FSD 기반의 전역 UI 시스템과 폐쇄망 전용 기술
+                    문서를 구축해 팀 표준을 정립했고, 평소 부족했던 영역(IP,
+                    HTTPS 등 네트워크 기초)을 학습한 뒤 팀원 7명 대상으로 사내
+                    세미나를 진행하며 지식 공유 문화에 기여했습니다.
                   </li>
                 </ul>
 
@@ -123,10 +118,12 @@ export function CareerSection() {
                     'React',
                     'TypeScript',
                     'Zustand',
-                    'IBSheet8',
-                    'WebtoB',
-                    'Nginx',
-                    'i18n',
+                    'ibSheet',
+                    'WebToB',
+                    'NGINX',
+                    'Webpack',
+                    'Jenkins',
+                    'Gitea',
                   ].map((tech) => (
                     <Badge
                       key={tech}
@@ -148,40 +145,29 @@ export function CareerSection() {
                     해양경찰 장구류 관리 시스템 고도화
                   </h4>
                   <p className='text-muted-foreground text-[13px] font-medium'>
-                    FSD 아키텍처 기반의 병합 효율화 및 주도적 공통 UI 시스템
-                    구축
+                    FSD 아키텍처 환경에서의 공통 UI 시스템 구축 및 문서화
                   </p>
                 </div>
 
                 <ul className='space-y-5'>
                   <li className='text-muted-foreground text-sm leading-relaxed'>
                     <strong className='text-foreground mb-1 block flex items-center gap-2'>
-                      ✨ 주도적인 공통 UI 시스템(Modal/Overlay) 설계 및 표준화
+                      공통 UI 시스템(Modal/Overlay) 설계
                     </strong>
-                    독립적인 도메인 개발 중심의 FSD 구조 하에서 누락되었던{' '}
-                    <strong>
-                      공통 모달 및 오버레이 시스템을 주도적으로 구축
-                    </strong>
-                    했습니다. 다양한 API 응답 모델에 유연하게 대응할 수 있도록
-                    인터페이스를 설계하고 실제 API 연동을 통해 기능을 검증하여,
-                    팀원들이 도메인 로직에만 집중할 수 있는 협업 기반을
-                    마련했습니다.
+                    도메인별 독립 개발이 중심이던 FSD 구조에서 공통 모달과
+                    오버레이 컴포넌트가 누락되어 있어, 다양한 API 응답 모델에
+                    유연하게 대응할 수 있는 인터페이스로 설계했습니다. 실제 API
+                    연동을 통해 동작을 검증한 뒤 팀에서 사용할 수 있도록
+                    정리했습니다.
                   </li>
                   <li className='text-muted-foreground text-sm leading-relaxed'>
                     <strong className='text-foreground mb-1 block flex items-center gap-2'>
-                      🤝 리드 협의를 통한 기술 지식 자산화 및 문서화
+                      폐쇄망 환경을 고려한 기술 문서 구축
                     </strong>
-                    설계한 시스템의 범용성을{' '}
-                    <strong>
-                      기술 리드(Lead)에게 직접 제안하여 표준으로 채택
-                    </strong>
-                    시켰습니다. 특히 외부 인터넷 사용이 제한적인 폐쇄망 환경을
-                    고려하여{' '}
-                    <strong>
-                      개발 폴더 내에 인터랙티브한 기술 문서(Docs)를 구축
-                    </strong>
-                    함으로써, 별도의 외부 참조 없이도 전 팀원이 공통 컴포넌트를
-                    즉각 활용할 수 있도록 기여했습니다.
+                    외부 인터넷 사용이 제한적인 폐쇄망 환경을 고려하여, 개발
+                    폴더 내에서 바로 접근 가능한 기술 문서(Docs)를 구축했습니다.
+                    별도의 외부 참조 없이도 팀원이 공통 컴포넌트의 사용법을
+                    확인하고 즉시 활용할 수 있도록 정리했습니다.
                   </li>
                 </ul>
 

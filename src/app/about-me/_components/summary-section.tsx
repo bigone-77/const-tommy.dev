@@ -71,27 +71,40 @@ export function SummarySection() {
                 </div>
               </div>
 
-              <div className='flex flex-col'>
-                {/* 첫 번째 문단 */}
-                <PTypography className='text-muted-foreground text-base leading-relaxed break-keep md:text-base md:leading-relaxed lg:text-lg lg:leading-loose'>
-                  React 생태계에 대한 이해를 바탕으로, 뛰어난{' '}
+              <div className='flex flex-col gap-2'>
+                {/* 첫 번째 문단: 정체성 */}
+                <PTypography className='text-muted-foreground text-base leading-relaxed break-keep md:text-base md:leading-relaxed lg:text-lg lg:leading-relaxed'>
+                  React 생태계 기반의{' '}
                   <span className='text-foreground font-bold'>
-                    사용자 경험(UX)은 물론 팀을 위한 개발자 경험(DX)
+                    사용자 경험(UX)
                   </span>
-                  을 깊이 고민하는 프론트엔드 엔지니어입니다.
+                  과 함께 일하는 팀의{' '}
+                  <span className='text-foreground font-bold'>
+                    개발자 경험(DX)
+                  </span>
+                  을 함께 고민하는 프론트엔드 엔지니어입니다.
                 </PTypography>
 
-                <PTypography className='text-muted-foreground text-base leading-relaxed break-keep md:text-base md:leading-relaxed lg:text-lg lg:leading-loose'>
-                  복잡한 요구사항 앞에서도 주도적으로 기술적 대안을 모색하며,{' '}
+                {/* 두 번째 문단: 실제 한 일 */}
+                <PTypography className='text-muted-foreground text-base leading-relaxed break-keep md:text-base md:leading-relaxed lg:text-lg lg:leading-relaxed'>
+                  공공기관 SI 환경에서{' '}
                   <span className='text-foreground font-bold'>
-                    AI 툴을 적극 활용하여 아이디어를 빠르게 구현해 내는 실행력
+                    비표준 라이브러리의 React 통합
                   </span>
-                  이 저의 강점입니다. 이를 바탕으로 유연한 설계와 안정적인
-                  구현을 이끌며{' '}
+                  과{' '}
                   <span className='text-foreground font-bold'>
-                    지속 가능한 서비스
+                    동적 렌더링 구조 설계
                   </span>
-                  를 만들어가는 과정을 즐깁니다.
+                  를 통해 반복되는 작업의 비효율을 줄이는 데 집중해 왔습니다.
+                </PTypography>
+
+                {/* 세 번째 문단: AI 활용 + 검증 의식 */}
+                <PTypography className='text-muted-foreground text-base leading-relaxed break-keep md:text-base md:leading-relaxed lg:text-lg lg:leading-relaxed'>
+                  AI 도구로 구현 속도를 높이는 한편,{' '}
+                  <span className='text-foreground font-bold'>
+                    핵심 비즈니스 로직은 직접 설계하고 검증
+                  </span>
+                  하며 안정성을 유지하려 합니다.
                 </PTypography>
               </div>
 

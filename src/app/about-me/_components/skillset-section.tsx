@@ -12,14 +12,14 @@ import { cn } from '@/lib/utils';
 const LAYER_DATA = [
   {
     id: 1,
-    title: 'Layer 1: 프론트엔드 핵심 & BFF',
+    title: 'Core: 프론트엔드 & 라우팅',
     icon: <Code2 className='size-4' />,
     color: 'text-emerald-500',
     indicator: 'bg-emerald-500',
     bgColor: 'bg-emerald-500/10',
     activeBorder: 'border-emerald-500/50',
     description:
-      'Next.js(App Router) 기반의 BFF 구조를 설계하여 최적화된 데이터 인터페이스를 구축합니다. 엄격한 타입 시스템을 통해 안정적이고 확장 가능한 아키텍처를 지향합니다.',
+      'React와 Next.js(App Router)를 기반으로 화면을 구성합니다. TypeScript의 타입 시스템과 TailwindCSS의 유틸리티 클래스를 조합해 일관성 있는 UI를 유지하려 합니다.',
     slugs: [
       'typescript',
       'javascript',
@@ -33,14 +33,14 @@ const LAYER_DATA = [
   },
   {
     id: 2,
-    title: 'Layer 2: 데이터 및 상태 관리',
+    title: 'Data: 데이터 & 상태 관리',
     icon: <Database className='size-4' />,
     color: 'text-blue-500',
     indicator: 'bg-blue-500',
     bgColor: 'bg-blue-500/10',
     activeBorder: 'border-blue-500/50',
     description:
-      '서버 상태 동기화와 클라이언트 전역 상태의 역할을 명확히 구분하여 관리합니다. 아키텍처에 따라 TanStack Query나 Apollo Client를 선택적으로 운용하며, 데이터 무결성을 위해 Zod와 Hook Form을 연계합니다.',
+      '서버 상태와 클라이언트 상태의 역할을 구분해 관리하는 데 익숙합니다. 프로젝트 성격에 따라 TanStack Query 또는 Apollo Client를 사용했으며, 폼과 데이터 유효성 검증에는 React Hook Form과 Zod를 조합합니다.',
     slugs: [
       'reactquery',
       'redux',
@@ -54,14 +54,14 @@ const LAYER_DATA = [
   },
   {
     id: 3,
-    title: 'Layer 3: 인프라 및 협업 환경',
+    title: 'Infra: 인프라 & 협업',
     icon: <Globe className='size-4' />,
     color: 'text-purple-500',
     indicator: 'bg-purple-500',
     bgColor: 'bg-purple-500/10',
     activeBorder: 'border-purple-500/50',
     description:
-      'Vercel, EC2 등 적합한 배포 인프라를 구축합니다. 실무 대다수의 협업 도구를 경험하여 새로운 툴 도입에도 즉시 적응하며, 기획/디자인과 기민하게 소통하여 팀 워크플로우를 최적화합니다.',
+      'Vercel과 EC2를 사용해 직접 배포해 본 경험이 있습니다. Git/Jira/Confluence/Notion 등 실무 협업 도구에 익숙하며, MSW와 Vitest로 테스트와 모킹 환경을 구성하는 데 친숙합니다.',
     slugs: [
       'vercel',
       'amazonec2',
@@ -83,14 +83,14 @@ const LAYER_DATA = [
   },
   {
     id: 4,
-    title: 'Layer 4: 특화 기술 및 UX 고도화',
+    title: 'Extra: 부가적으로 다뤄본 기술',
     icon: <Cpu className='size-4' />,
     color: 'text-orange-500',
     indicator: 'bg-orange-500',
     bgColor: 'bg-orange-500/10',
     activeBorder: 'border-orange-500/50',
     description:
-      '실시간 비전 연산 최적화와 같이 기술 난도가 높은 문제를 해결하는 데 즐거움을 느낍니다. i18n 확장성 확보와 Framer Motion 설계를 통해 사용자가 몰입할 수 있는 완성도 높은 결과물을 만듭니다.',
+      '주력은 아니지만 프로젝트 과정에서 함께 다뤄본 기술들입니다. Framer Motion으로 인터랙션을 구성하거나, i18next로 다국어 환경을 구성하거나, OpenAI API를 활용해본 경험이 있습니다.',
     slugs: ['openai', 'framer', 'i18next', 'pwa'],
   },
 ];
@@ -122,17 +122,16 @@ export function SkillsetSection() {
         <div className='space-y-12'>
           <div className='space-y-2 text-center md:text-left'>
             <H2Typography className='border-none pb-0'>
-              🛠️ 기술 스택
+              🛠️ SkillSet
             </H2Typography>
             <PTypography className='text-muted-foreground mt-0 max-w-3xl break-keep'>
-              단순한 도구의 나열보다{' '}
+              프로젝트에서 사용해 본 기술을{' '}
               <span className='inline-block'>
                 <span className='text-foreground font-bold'>
-                  각 기술 계층의 유기적인 결합
+                  네 개 계층으로 나눠 정리
                 </span>
               </span>
-              을 통해 문제를 해결합니다. 레이어를 클릭해 기술 구성을
-              확인해보세요.
+              했습니다. 레이어를 클릭해 기술 구성을 확인해보세요.
             </PTypography>
           </div>
 

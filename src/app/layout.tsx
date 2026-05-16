@@ -91,7 +91,7 @@ export default async function RootLayout({
               <SiteTracker ip={ip} />
               <AppSidebar />
               <SidebarInset>
-                <header className='bg-background/80 sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b px-4 transition-all duration-200'>
+                <header className='bg-background/80 sticky top-0 z-50 flex h-16 shrink-0 items-center gap-2 border-b px-4 backdrop-blur-md transition-all duration-200'>
                   <SidebarTrigger className='hover:bg-accent transition-colors duration-200' />
                   <AppBreadCrumb />
                 </header>

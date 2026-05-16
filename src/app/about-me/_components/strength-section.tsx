@@ -6,10 +6,10 @@ import {
   ArrowRight,
   BrainCircuit,
   CheckCircle2,
-  Code2,
+  Layers,
   LayoutTemplate,
+  Plug,
   Rocket,
-  Zap,
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
@@ -59,7 +59,7 @@ function ContentInner({ s }: { s: any }) {
       <div className='space-y-3'>
         <h4 className='text-foreground flex items-center gap-2 text-base font-bold'>
           <CheckCircle2 className='text-primary size-4' />
-          The Challenge (문제 상황)
+          The Context (배경)
         </h4>
         <p className='text-muted-foreground border-muted border-l-2 pl-6 text-sm leading-relaxed break-keep'>
           {s.details.challenge}
@@ -69,7 +69,7 @@ function ContentInner({ s }: { s: any }) {
       <div className='space-y-3'>
         <h4 className='text-foreground flex items-center gap-2 text-base font-bold'>
           <CheckCircle2 className='text-primary size-4' />
-          The Approach (해결 과정)
+          The Approach (접근 방식)
         </h4>
         <p className='text-muted-foreground border-muted border-l-2 pl-6 text-sm leading-relaxed break-keep'>
           {s.details.approach}
@@ -80,7 +80,7 @@ function ContentInner({ s }: { s: any }) {
         <div className='flex items-center gap-2'>
           <Rocket className='text-primary size-4' />
           <h4 className='text-primary text-xs font-bold tracking-widest uppercase'>
-            Result & Impact
+            What I Learned
           </h4>
         </div>
         <p className='text-foreground text-sm leading-relaxed font-semibold'>
@@ -129,7 +129,7 @@ function StrengthCard({ s, i }: { s: any; i: number }) {
       <div className='mt-auto border-t border-dashed pt-4'>
         <div className='text-primary flex items-center justify-between'>
           <span className='text-[10px] font-bold tracking-widest uppercase'>
-            Case Study Inside
+            Read More
           </span>
           <ArrowRight className='size-3 transition-transform group-hover:translate-x-1' />
         </div>
@@ -191,63 +191,63 @@ function StrengthCard({ s, i }: { s: any; i: number }) {
 export function StrengthSection() {
   const strengths = [
     {
-      title: 'AI 에이전트 협업 및 실전 기술 구현',
-      tag: 'AI & Efficiency',
+      title: '반복을 줄이는 구조 설계',
+      tag: 'Engineering',
+      icon: <Layers className='text-primary size-6' />,
+      description:
+        '같은 작업이 반복된다는 신호를 만나면 구조를 다시 봅니다. 매번 정적으로 짜던 화면을 스키마 기반의 동적 렌더링 구조로 옮긴 경험이 있습니다.',
+      details: {
+        challenge:
+          '공공기관 SI 환경에서 50여 종의 서식을 매번 정적으로 구현해야 했고, 신규 서식이 추가될 때마다 비슷한 컴포넌트를 반복해서 작성하는 패턴이 누적되고 있었습니다.',
+        approach:
+          'Zustand로 관리되는 스키마를 런타임에 주입하면 UI가 자동 구성되는 동적 렌더링 구조를 설계했습니다. 컬럼 정의와 권한 분기, 서식 상태에 따른 UI 변화를 스키마 한 곳에서 다루도록 정리했습니다.',
+        result:
+          '신규 서식 추가 시 컴포넌트를 새로 작성하지 않고 스키마 정의만으로 대응 가능해졌습니다. "같은 작업이 반복된다"는 신호를 코드 구조 차원에서 다루는 감각을 얻었습니다.',
+      },
+    },
+    {
+      title: '라이브러리와 환경의 결을 맞추는 통합',
+      tag: 'Integration',
+      icon: <Plug className='size-6 text-blue-500' />,
+      description:
+        'React가 기대하는 패턴과 외부 라이브러리·환경의 동작이 어긋날 때, 그 사이를 메우는 인터페이스를 설계합니다. 비표준 라이브러리와 명령형 SDK를 React 라이프사이클에 맞춰 통합한 경험이 있습니다.',
+      details: {
+        challenge:
+          '폐쇄망 환경에서 사용해야 했던 비표준 그리드 라이브러리(ibSheet)가 React 라이프사이클과 어긋나, 서버 데이터 갱신 시 상태 동기화 불일치로 테이블이 불필요하게 재렌더링되거나 무한 스크롤 threshold 통과 시 데이터 로딩이 끊기는 문제가 있었습니다.',
+        approach:
+          '커스텀 훅으로 라이프사이클 래퍼를 설계해 라이브러리 인스턴스의 생성·갱신·해제를 React의 흐름과 동기화하고, 발견된 이슈들을 차례로 해결했습니다. 이후 명령형으로 동작하는 네이버 지도 SDK에도 같은 관점을 적용해, Callback Ref와 React Root 주입 패턴으로 선언적 인터페이스를 구성했습니다.',
+        result:
+          '서로 다른 두 환경에서 같은 문제(외부 세계와 React의 결 차이)를 마주했고, 매번 다른 라이브러리에 끌려가기보다 React 패턴 쪽으로 통합 지점을 끌어오는 방식이 더 안정적이라는 감각을 얻었습니다.',
+      },
+    },
+    {
+      title: 'AI를 동반자로, 검증은 직접',
+      tag: 'AI Collaboration',
       icon: <BrainCircuit className='size-6 text-purple-500' />,
       description:
-        'AI를 파트너로 활용하여 기술 리서치 및 프로토타이핑 시간을 단축하고, 생성된 코드의 정합성을 직접 검증하여 개발 효율을 극대화합니다.',
+        'AI 도구로 구현 속도를 높이되, 핵심 비즈니스 로직과 상태 흐름은 직접 설계하고 검증합니다. 빠른 구현과 신뢰할 수 있는 동작 사이의 균형을 찾으려 합니다.',
       details: {
         challenge:
-          'MediaPipe 기반의 실시간 포즈 추론 시 발생하는 기술적 난관과, AI 생성 코드의 실무 정합성을 빠르게 확보해야 하는 과제를 안고 있었습니다.',
+          'AI 도구를 적극 사용할수록 코드는 빠르게 생성되지만, 생성된 코드의 동작 가정이 실제 사용자 인터랙션과 어긋나는 경우가 종종 발생했습니다. 속도와 신뢰성 사이의 균형이 필요했습니다.',
         approach:
-          'AI를 활용해 기술 리서치 및 보일러플레이트 작성 시간을 최소화하고, 절약된 시간을 atan2 연산 최적화 및 60fps 확보 등 핵심 엔지니어링에 집중 투입했습니다.',
+          '1차로 AI를 통해 프로토타입 코드를 얻고, 그 이후에는 시퀀스적으로 접근했습니다. 해당 코드의 다음 단계, 상태가 어떻게 발산될 수 있는지를 AI와 대화하며 함께 검증하고, 핵심 비즈니스 로직이라고 판단되는 부분은 직접 예상 결과값을 정의한 뒤 단위 테스트로 두었습니다.',
         result:
-          '초기 프로토타이핑 사이클을 50% 이상 단축했으며, AI 생성 코드를 무결하게 리팩토링함으로써 기술적 완성도와 속도의 균형을 맞췄습니다.',
+          'AI가 만든 코드를 그대로 신뢰하지 않고, "생성 → 시퀀스 검증 → 테스트로 고정"의 흐름을 거치며 속도를 잃지 않으면서도 안정성을 유지할 수 있다는 감각을 얻었습니다.',
       },
     },
     {
-      title: '지속 가능한 구조와 개발 표준화',
-      tag: 'Engineering',
-      icon: <Code2 className='text-primary size-6' />,
+      title: '프론트엔드 너머의 환경도 함께 본다',
+      tag: 'Beyond Frontend',
+      icon: <LayoutTemplate className='size-6 text-yellow-500' />,
       description:
-        'FSD 아키텍처 기반의 확장성 있는 시스템을 설계합니다. 특히 위젯 단위의 컴포넌트화를 통해 팀 전체의 개발 생산성을 상향 평준화합니다.',
+        '프론트엔드 코드만으로 해결되지 않는 환경 제약을 만났을 때, 필요한 만큼 그 너머의 영역도 들여다보려 합니다. 폐쇄망 환경에서 부족했던 영역을 학습하고 팀에 공유한 경험이 있습니다.',
       details: {
         challenge:
-          '대규모 대시보드 환경에서 도메인 간 결합도가 높아지는 문제를 해결하고, 파편화된 UI 컴포넌트의 재사용성을 확보해야 했습니다.',
+          '폐쇄망 SI 환경에서는 외부 라이브러리 도입이 제한되고, 학부 시절에 다루지 못했던 영역(웹서버 설정, 네트워크 기초 등)이 실무에서 마주치는 일이 잦았습니다. 프론트엔드 코드 안에서만 문제를 보면 막히는 순간이 많았습니다.',
         approach:
-          'FSD 구조 내에 독립적인 위젯 시스템을 설계하여 기능 단위의 분리를 실현하고, IBSheet8 커스텀 훅 설계 및 기술 문서화를 통해 협업 표준을 수립했습니다.',
+          '디버깅에 필요한 최소 기능의 JSON Viewer를 직접 구현하고, 평소 부족했던 영역(IP, HTTPS 등 네트워크 기초)을 따로 학습한 뒤 팀원 7명을 대상으로 사내 세미나를 진행했습니다. 혼자 아는 것보다 누구에게 설명해야 한다는 압박이 학습 동기와 정리의 질을 모두 끌어올렸습니다.',
         result:
-          'UI 결합도를 낮춰 유지보수 비용을 절감했으며, 폐쇄망 환경에서도 팀원들이 즉각 활용 가능한 공통 위젯 라이브러리와 Docs를 자산화했습니다.',
-      },
-    },
-    {
-      title: '데이터 가공 및 런타임 성능 최적화',
-      tag: 'Optimization',
-      icon: <Zap className='size-6 text-yellow-500' />,
-      description:
-        '150개 이상의 컬럼과 50여 종의 복잡한 서식 환경에서도 브라우저 성능 병목을 수학적 로직과 상태 관리 전략으로 해결합니다.',
-      details: {
-        challenge:
-          '50여 가지 인허가 서식별로 상이한 권한과 상태에 따라 실시간으로 변하는 방대한 컬럼 스키마를 처리하며 발생하는 렌더링 부하를 마주했습니다.',
-        approach:
-          'Zustand 기반의 동적 서식 엔진을 구축하여 런타임에서 필요한 컬럼만 주입하는 구조를 설계하고, 불필요한 리렌더링을 차단하는 상태 최적화를 수행했습니다.',
-        result:
-          '대규모 서식 전환 시에도 코드 복잡도를 낮게 유지했으며, 150개 이상의 컬럼 환경에서도 안정적인 렌더링 성능을 확보했습니다.',
-      },
-    },
-    {
-      title: '경계를 두지 않는 능동적 문제 해결',
-      tag: 'Problem Solving',
-      icon: <LayoutTemplate className='size-6 text-blue-500' />,
-      description:
-        '프론트엔드 개발에 국한되지 않고, 개발 도구 직접 제작 및 인프라 제어(Reverse Proxy)를 통해 비즈니스 가치를 확보합니다.',
-      details: {
-        challenge:
-          '현장 배포 환경의 네트워크 제약(CORS)과, 복잡한 JSON 데이터 대조 과정에서 발생하는 막대한 소통 비용 및 정합성 오류를 마주했습니다.',
-        approach:
-          'WebtoB 리버스 프록시 설정을 직접 수행해 인프라 제약을 돌파하고, 클라이언트 사이드 JSON Viewer를 제작하여 디버깅 리드타임을 획기적으로 줄였습니다.',
-        result:
-          '백엔드와의 데이터 규격 대조 시간을 단축하여 협업 효율을 극대화했으며, 기술적 허들을 정면으로 돌파해 서비스 가용성을 확보했습니다.',
+          '프론트엔드의 경계가 환경 제약 앞에서는 의미가 약해진다는 점, 그리고 부족한 영역은 학습해서 팀과 나눌 때 더 단단해진다는 점을 직접 체감했습니다.',
       },
     },
   ];
@@ -258,16 +258,16 @@ export function StrengthSection() {
         <div className='space-y-12'>
           <div className='space-y-2 text-center md:text-left'>
             <H2Typography className='border-none pb-0'>
-              🛡️ 기술적 강점
+              🛡️ Approach
             </H2Typography>
             <PTypography className='text-muted-foreground mt-0 max-w-2xl leading-relaxed break-keep'>
-              도구의 사용법에 매몰되지 않고,{' '}
+              실무에서 마주친 문제들을 풀어내며{' '}
               <span className='inline-block'>
                 <span className='text-foreground font-bold'>
-                  엔지니어링의 본질적인 문제 해결
+                  중요하게 보게 된 네 가지 관점
                 </span>
               </span>
-              에 집중하며 얻은 실무적 역량입니다.
+              입니다.
             </PTypography>
           </div>
 
@@ -276,7 +276,7 @@ export function StrengthSection() {
             <Carousel
               opts={{
                 align: 'start',
-                loop: false, // 요구사항: Loop 비활성화
+                loop: false,
               }}
               className='w-full'
             >
@@ -291,7 +291,6 @@ export function StrengthSection() {
                 ))}
               </CarouselContent>
 
-              {/* 내비게이션 버튼: 상시 노출 및 경계선(Border) 밀착 배치 */}
               <div className='hidden md:block'>
                 <CarouselPrevious className='border-primary/20 bg-background hover:bg-primary/10 absolute top-1/2 -left-5 z-20 size-10 -translate-y-1/2 rounded-full border shadow-md transition-all hover:scale-110 active:scale-95' />
                 <CarouselNext className='border-primary/20 bg-background hover:bg-primary/10 absolute top-1/2 -right-5 z-20 size-10 -translate-y-1/2 rounded-full border shadow-md transition-all hover:scale-110 active:scale-95' />
