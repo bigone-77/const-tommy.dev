@@ -51,12 +51,12 @@ export function SummarySection() {
                 {/* 연락처 영역 (기존 동일) */}
                 <div className='flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-start'>
                   <a
-                    href='mailto:taeil012@gmail.com'
+                    href='mailto:taeill012@gmail.com'
                     className='group text-muted-foreground hover:text-primary flex items-center gap-2 transition-colors'
                   >
                     <Mail className='size-4' />
                     <span className='font-mono text-sm font-medium tracking-tight'>
-                      taeil012@gmail.com
+                      taeill012@gmail.com
                     </span>
                   </a>
                   <a

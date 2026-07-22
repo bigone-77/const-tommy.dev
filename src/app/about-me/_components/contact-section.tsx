@@ -34,7 +34,7 @@ export function ContactSection() {
       return;
     }
 
-    const mailtoUrl = `mailto:taeil012@gmail.com?subject=${encodeURIComponent(
+    const mailtoUrl = `mailto:taeill012@gmail.com?subject=${encodeURIComponent(
       `[문의] ${subject} (보낸이: ${name})`,
     )}&body=${encodeURIComponent(message)}`;
 
